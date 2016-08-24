@@ -10,7 +10,8 @@ namespace MvcCourier.Migrations
     {
         public PackageConfiguration()
         {
-            AutomaticMigrationsEnabled = false;
+            AutomaticMigrationsEnabled = true;
+            AutomaticMigrationDataLossAllowed = true;
         }
 
         protected override void Seed(MvcCourier.Models.PackageDBContext context)
@@ -20,7 +21,7 @@ namespace MvcCourier.Migrations
 
             context.Packages.AddOrUpdate(
                 i => i.PackageId,
-                new Package
+                new PackageModels
                 {
                     PackageId = "1132",
                     Location = "Warehouse",

@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Globalization;
 using System.Web.Security;
+
 
 namespace MvcCourier.Models
 {
@@ -17,6 +19,7 @@ namespace MvcCourier.Models
         }
 
         public DbSet<UserProfile> UserProfiles { get; set; }
+
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -35,7 +38,9 @@ namespace MvcCourier.Models
         public string UserName { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
-
+        public string UserRole { get; set; }
+        public IEnumerable<System.Web.Mvc.SelectListItem> UserRoles { get; set; } 
+        //public IEnumerable<string> UserRole { get; set; } 
     }
 
     public class RegisterExternalLoginModel
@@ -92,6 +97,14 @@ namespace MvcCourier.Models
 
         [Display(Name = "Last name")]
         public string LastName { get; set; }
+
+        public RegisterModel()
+        {
+            UserRole = "Customer";
+        }
+
+
+        public string UserRole { get; set; }
 
         [Required]
         [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]

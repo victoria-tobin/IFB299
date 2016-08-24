@@ -1,0 +1,36 @@
+﻿@model MvcCourier.Models.OrderModels
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>OrderModels</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.CustomerName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CustomerName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Delivered)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Delivered)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.assignedCourier)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.assignedCourier)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.OrderID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,40 @@
+﻿@model MvcCourier.Models.OrderModels
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend>OrderModels</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.CustomerName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CustomerName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Delivered)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Delivered)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.assignedCourier)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.assignedCourier)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}

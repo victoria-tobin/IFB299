@@ -1,4 +1,4 @@
-﻿@model MvcCourier.Models.Package
+﻿@model MvcCourier.Models.PackageModels
 
 @{
     ViewBag.Title = "Create";
@@ -12,6 +12,14 @@
 
     <fieldset>
         <legend>Package</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PackageId)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PackageId)
+            @Html.ValidationMessageFor(model => model.PackageId)
+        </div>
 
         <div class="editor-label">
             @Html.LabelFor(model => model.Location)

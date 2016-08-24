@@ -45,7 +45,7 @@ namespace MvcCourier.Controllers
 
         public ActionResult Details(int id = 0)
         {
-            Package package = db.Packages.Find(id);
+            PackageModels package = db.Packages.Find(id);
             if (package == null)
             {
                 return HttpNotFound();
@@ -66,7 +66,7 @@ namespace MvcCourier.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Package package)
+        public ActionResult Create(PackageModels package)
         {
             if (ModelState.IsValid)
             {
@@ -83,7 +83,7 @@ namespace MvcCourier.Controllers
 
         public ActionResult Edit(int id = 0)
         {
-            Package package = db.Packages.Find(id);
+            PackageModels package = db.Packages.Find(id);
             if (package == null)
             {
                 return HttpNotFound();
@@ -96,7 +96,7 @@ namespace MvcCourier.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(Package package)
+        public ActionResult Edit(PackageModels package)
         {
             if (ModelState.IsValid)
             {
@@ -112,7 +112,7 @@ namespace MvcCourier.Controllers
 
         public ActionResult Delete(int id = 0)
         {
-            Package package = db.Packages.Find(id);
+            PackageModels package = db.Packages.Find(id);
             if (package == null)
             {
                 return HttpNotFound();
@@ -127,7 +127,7 @@ namespace MvcCourier.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Package package = db.Packages.Find(id);
+            PackageModels package = db.Packages.Find(id);
             db.Packages.Remove(package);
             db.SaveChanges();
             return RedirectToAction("Index");

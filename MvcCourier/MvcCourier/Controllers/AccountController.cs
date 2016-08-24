@@ -17,6 +17,8 @@ namespace MvcCourier.Controllers
     //[InitializeSimpleMembership]
     public class AccountController : Controller
     {
+
+        //private UsersContext db = new UsersContext();
         //
         // GET: /Account/Login
 
@@ -79,8 +81,11 @@ namespace MvcCourier.Controllers
                 // Attempt to register the user
                 try
                 {
-                    WebSecurity.CreateUserAndAccount(model.UserName, model.Password, propertyValues: new { model.FirstName, model.LastName });
+                    WebSecurity.CreateUserAndAccount(model.UserName, model.Password, propertyValues: new { model.FirstName, model.LastName, model.UserRole });
                     WebSecurity.Login(model.UserName, model.Password);
+
+                    Roles.AddUserToRole(model.UserName, "Customer");
+                    
                     return RedirectToAction("Index", "Home");
                 }
                 catch (MembershipCreateUserException e)

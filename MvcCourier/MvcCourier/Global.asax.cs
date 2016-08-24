@@ -9,6 +9,7 @@ using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using WebMatrix.WebData;
 //using WebMatrix.Data;
 
 namespace MvcCourier
@@ -31,6 +32,7 @@ namespace MvcCourier
             // Added for Account
             Database.SetInitializer(new MigrateDatabaseToLatestVersion<UsersContext, AccountConfiguration>());
             new UsersContext().UserProfiles.Find(1);
+
         }
     }
 }
