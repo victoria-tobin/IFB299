@@ -1,0 +1,63 @@
+﻿@model IEnumerable<OnTheSpot.Models.Package>
+
+
+<div>
+    <ul id ="m">
+        <li>@Html.ActionLink("All Orders", "Index", "Orders")</li>
+        <li>@Html.ActionLink("Outstanding Orders", "Index", "Orders", new { outstanding = true }, null)</li>
+        <li>@Html.ActionLink("Packages", "Index", "Packages")</li>
+    </ul>
+</div>
+
+
+@{
+    ViewBag.Title = "Packages";
+}
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+@using (Html.BeginForm())
+{
+    <p>
+        Order ID: @Html.TextBox("searchInt")
+        <input type="submit" value="Search" />
+    </p>
+}
+
+
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.OrderID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Signature)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AssignedCourier)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.OrderID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Signature)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AssignedCourier)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.PackageID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.PackageID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.PackageID })
+        </td>
+    </tr>
+}
+
+</table>

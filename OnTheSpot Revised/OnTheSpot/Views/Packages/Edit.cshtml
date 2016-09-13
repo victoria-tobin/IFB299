@@ -1,0 +1,54 @@
+﻿@model OnTheSpot.Models.Package
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Package</legend>
+
+        @Html.HiddenFor(model => model.PackageID)
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.OrderID, "Order")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("OrderID", String.Empty)
+            @Html.ValidationMessageFor(model => model.OrderID)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Signature)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Signature)
+            @Html.ValidationMessageFor(model => model.Signature)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.AssignedCourier)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.AssignedCourier)
+            @Html.ValidationMessageFor(model => model.AssignedCourier)
+        </div>
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
