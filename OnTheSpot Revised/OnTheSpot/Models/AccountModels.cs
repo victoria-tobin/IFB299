@@ -32,6 +32,8 @@ namespace OnTheSpot.Models
 
         [Required(ErrorMessage = "Please provide username", AllowEmptyStrings = false)]
         public string UserName { get; set; }
+        public IEnumerable<System.Web.Mvc.SelectListItem> UserRoles { get; set; }
+        //public IEnumerable<System.Web.Mvc.SelectListItem> Couriers { get; set; }
     }
 
     public class LocalPasswordModel

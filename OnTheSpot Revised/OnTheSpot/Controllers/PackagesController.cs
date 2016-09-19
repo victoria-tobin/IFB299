@@ -52,7 +52,11 @@ namespace OnTheSpot.Controllers
 
         public ActionResult Create()
         {
-            ViewBag.OrderID = new SelectList(db.Orders, "OrderID", "UserName");
+            // select list for couriers
+            var cour = db.Users.Where(p => p.UserRole == "Courier");
+            ViewBag.Cour = new SelectList(cour, "UserName", "UserName");
+
+            ViewBag.OrderID = new SelectList(db.Orders, "OrderID", "OrderID");
             return View();
         }
 
@@ -69,8 +73,12 @@ namespace OnTheSpot.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            // select list for couriers
+            var cour = db.Users.Where(p => p.UserRole == "Courier");
+            ViewBag.Cour = new SelectList(cour, "UserName", "UserName");
 
-            ViewBag.OrderID = new SelectList(db.Orders, "OrderID", "UserName", package.OrderID);
+            ViewBag.OrderID = new SelectList(db.Orders, "OrderID", "OrderID", package.OrderID);
+            
             return View(package);
         }
 
@@ -85,7 +93,41 @@ namespace OnTheSpot.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.OrderID = new SelectList(db.Orders, "OrderID", "UserName", package.OrderID);
+
+
+            /*
+             * Can't get the selected value to work
+            
+            // select list for priority
+            var prior = from Priority p in Enum.GetValues(typeof(Priority))
+                        select new SelectListItem { Value = p.ToString(), Text = p.ToString(), Selected = (p.Equals(package.Priority)) };
+            ViewBag.Priority = new SelectList(prior, "Value", "Text", package.Priority);
+
+            
+             // select list for status
+             var status = from Status s in Enum.GetValues(typeof(Status))
+                          select new { ID = (int)package.Status, Name = package.Status.ToString() };
+             ViewBag.Status = new SelectList(status, "ID", "Name", package.Status.ToString());
+             * 
+             * @Html.DropDownListFor(model => model.Status, (SelectList)ViewBag.Status, Model.Status)
+            @Html.ValidationMessageFor(model => model.Status)
+             * 
+             * 
+             *         <div class="editor-label">
+            @Html.LabelFor(model => model.OrderID, "Order")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("Ord", string.Empty)
+            @Html.ValidationMessageFor(model => model.OrderID)
+        </div>
+
+            */
+
+
+            // select list for couriers
+            var cour = db.Users.Where(p => p.UserRole == "Courier");
+            ViewBag.Cour = new SelectList(cour, "UserName", "UserName", package.AssignedCourier);
+
             return View(package);
         }
 
@@ -102,7 +144,7 @@ namespace OnTheSpot.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.OrderID = new SelectList(db.Orders, "OrderID", "UserName", package.OrderID);
+            ViewBag.OrderID = new SelectList(db.Orders, "OrderID", "OrderID", package.OrderID);
             return View(package);
         }
 

@@ -14,29 +14,84 @@
         <legend>Package</legend>
 
         @Html.HiddenFor(model => model.PackageID)
+        @Html.HiddenFor(model => model.OrderID)
+
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.OrderID, "Order")
+            @Html.LabelFor(model => model.AssignedCourier, "AssignedCourier")
         </div>
         <div class="editor-field">
-            @Html.DropDownList("OrderID", String.Empty)
-            @Html.ValidationMessageFor(model => model.OrderID)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Signature)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Signature)
-            @Html.ValidationMessageFor(model => model.Signature)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.AssignedCourier)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.AssignedCourier)
+            @Html.DropDownListFor(model => model.AssignedCourier, (SelectList)ViewBag.Cour, string.Empty)
             @Html.ValidationMessageFor(model => model.AssignedCourier)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Priority, "Priority")
+        </div>
+        <div class="editor-field">
+            @Html.RadioButtonFor(model => model.Priority, "Standard") Standard
+        </div>
+        <div class="editor-field">
+            @Html.RadioButtonFor(model => model.Priority, "High") High
+        </div>
+        <div class="editor-field">
+            @Html.RadioButtonFor(model => model.Priority, "Overnight") Overnight
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Status, "Status")
+        </div>
+        <div class="editor-field">
+            @Html.RadioButtonFor(model => model.Status, "ReadyForPickup") ReadyForPickup 
+        </div>
+        <div class="editor-field"> 
+            @Html.RadioButtonFor(model => model.Status, "AtWarehouse") AtWarehouse
+        </div>
+        <div class="editor-field">
+            @Html.RadioButtonFor(model => model.Status, "InTransit") InTransit
+        </div>
+        <div class="editor-field">
+            @Html.RadioButtonFor(model => model.Status, "Delivered") Delivered
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PickupAddress, "Pickup Address")
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PickupAddress)
+            @Html.ValidationMessageFor(model => model.PickupAddress)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.DeliveryAddress, "DeliveryAddress")
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.DeliveryAddress)
+            @Html.ValidationMessageFor(model => model.DeliveryAddress)
+        </div>
+
+                <div class="editor-label">
+            @Html.LabelFor(model => model.Weight, "Weight")
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Weight)
+            @Html.ValidationMessageFor(model => model.Weight)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Collected, "Collected")
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Collected)
+            @Html.ValidationMessageFor(model => model.Collected)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Delivered, "Delivered")
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Delivered)
+            @Html.ValidationMessageFor(model => model.Delivered)
         </div>
 
         <p>
