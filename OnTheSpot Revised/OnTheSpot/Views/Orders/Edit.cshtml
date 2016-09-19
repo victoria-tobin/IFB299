@@ -31,13 +31,22 @@
             @Html.EditorFor(model => model.OrderSubmitted)
             @Html.ValidationMessageFor(model => model.OrderSubmitted)
         </div>
-
-                <div class="editor-label">
-            @Html.LabelFor(model => model.Completed)
+        @if (User.IsInRole("Admin") || User.IsInRole("Courier"))
+        {
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Completed)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.Completed)
+                @Html.ValidationMessageFor(model => model.Completed)
+            </div>
+        }
+        
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Pickup)
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.Completed)
-            @Html.ValidationMessageFor(model => model.Completed)
+            @Html.CheckBoxFor(model => model.Pickup)
         </div>
 
         <p>

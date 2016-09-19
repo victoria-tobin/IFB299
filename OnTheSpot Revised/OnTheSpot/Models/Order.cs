@@ -23,6 +23,7 @@ namespace OnTheSpot.Models
 
         public DateTime OrderSubmitted { get; set; }
         public bool Completed { get; set; }
+        public bool Pickup { get; set; }
 
        // public virtual UserProfile UserProfile { get; set; }
 

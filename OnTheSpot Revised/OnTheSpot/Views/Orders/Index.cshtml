@@ -5,7 +5,11 @@
     <ul id ="m">
         <li>@Html.ActionLink("All Orders", "Index", "Orders")</li>
         <li>@Html.ActionLink("Outstanding Orders", "Index", new { outstanding = true })</li>
-        <li>@Html.ActionLink("Packages", "Index", "Packages")</li>
+        @if (User.IsInRole("Admin"))
+        {
+            <li>@Html.ActionLink("Packages", "Index", "Packages")</li>
+        }
+        
     </ul>
 </div>
 
@@ -48,27 +52,62 @@
         </th>
         <th></th>
     </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.OrderID)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.UserName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.UserId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.OrderSubmitted)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id = item.OrderID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.OrderID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.OrderID })
-        </td>
-    </tr>
-}
+    @if(User.IsInRole("Admin" )||User.IsInRole( "Courier"))
+    {
+        foreach (var item in Model) {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OrderID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UserName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UserId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OrderSubmitted)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Pickup)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.OrderID }) |
+                    @Html.ActionLink("Details", "Details", new { id=item.OrderID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id=item.OrderID })
+                </td>
+        
+            </tr>
+        }
+    }else
+    {
+        
+        foreach (var item in Model)
+        {
+            if(item.UserId == WebSecurity.GetUserId(User.Identity.Name))
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.OrderID)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UserName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UserId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.OrderSubmitted)
+                    </td>
+                    <td>
+                         @Html.DisplayFor(modelItem => item.Pickup)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.OrderID })
+                    </td>
+                </tr>
+            }
+        }
+    }
 
 </table>
