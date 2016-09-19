@@ -1,4 +1,4 @@
-﻿@model OnTheSpot.Models.Order
+﻿@model Tuple<OnTheSpot.Models.Order, OnTheSpot.Models.Package>
 
 @{
     ViewBag.Title = "Create";
@@ -21,26 +21,64 @@
         <legend>Order</legend>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.UserName)
+            @Html.LabelFor(tuple=> tuple.Item1.UserName)
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.UserName)
-            @Html.ValidationMessageFor(model => model.UserName)
+            @Html.EditorFor(tuple=> tuple.Item1.UserName)
+            @Html.ValidationMessageFor(tuple=> tuple.Item1.UserName)
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.OrderSubmitted)
+            @Html.LabelFor(tuple => tuple.Item1.OrderSubmitted)
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.OrderSubmitted)
-            @Html.ValidationMessageFor(model => model.OrderSubmitted)
+            @Html.EditorFor(tuple => tuple.Item1.OrderSubmitted, "Date Order Submitted")
+            @Html.ValidationMessageFor(tuple => tuple.Item1.OrderSubmitted)
         </div>
         <div class="editor-label">
-            @Html.LabelFor(model => model.Pickup)
+            @Html.LabelFor(tuple => tuple.Item1.Pickup)
         </div>
         <div class="editor-field">
-            @Html.CheckBoxFor(model => model.Pickup)
+            @Html.CheckBoxFor(tuple => tuple.Item1.Pickup)
         </div>
+
+
+        <div class="editor-label">
+            @Html.LabelFor(tuple => tuple.Item2.Priority)
+        </div>
+        <div class="editor-field">
+            @Html.RadioButtonFor(tuple => tuple.Item2.Priority, "Standard", new { @checked = true }) Standard
+        </div>
+        <div class="editor-field">
+            @Html.RadioButtonFor(tuple => tuple.Item2.Priority, "High") High
+        </div>
+        <div class="editor-field">
+            @Html.RadioButtonFor(tuple => tuple.Item2.Priority, "Overnight") Overnight
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(tuple => tuple.Item2.Signature, "Signature on Deliver?")
+        </div>
+        <div class="editor-field">
+            @Html.CheckBoxFor(tuple => tuple.Item2.Signature)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(tuple => tuple.Item2.PickupAddress, "Pickup Address")
+        </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(tuple => tuple.Item2.PickupAddress)
+            @Html.ValidationMessageFor(tuple => tuple.Item2.PickupAddress)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(tuple => tuple.Item2.DeliveryAddress, "Delivery Address")
+        </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(tuple => tuple.Item2.DeliveryAddress)
+            @Html.ValidationMessageFor(tuple => tuple.Item2.DeliveryAddress)
+        </div>
+
 
         <p>
             <input type="submit" value="Create" />
