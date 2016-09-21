@@ -1,0 +1,40 @@
+﻿@model OnTheSpot.Models.Package
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend>Package</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Order.UserName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Order.UserName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Signature)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Signature)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.AssignedCourier)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.AssignedCourier)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}

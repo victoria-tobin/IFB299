@@ -102,7 +102,7 @@ namespace OnTheSpot.Migrations
             // Create new packages
             var packages = new List<Package>
             {
-                new Package {PackageID = 1, OrderID = 1, Status = Status.AtWarehouse, PickupAddress = "Location 1", DeliveryAddress = "56 Albert St, Brisbane CBD", Weight = 15, Collected = DateTime.Parse("2/07/2016"), Delivered = null, Priority = Priority.High, AssignedCourier = "ABug"}
+                //new Package {PackageID = 1, OrderID = 1, Status = Status.AtWarehouse, PickupAddress = "Location 1", DeliveryAddress = "56 Albert St, Brisbane CBD", Weight = 15, Collected = DateTime.Parse("2/07/2016"), Delivered = null, Priority = Priority.High, AssignedCourier = "ABug"}
 
             };
             packages.ForEach(s => context.Packages.AddOrUpdate(p => p.PackageID, s));

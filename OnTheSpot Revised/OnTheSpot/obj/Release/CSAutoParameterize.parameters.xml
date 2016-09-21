@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="DefaultConnection-Web.config Connection String" description="DefaultConnection Connection String used in web.config by the application to access the database." defaultValue="Data Source=(LocalDb)\v11.0;Initial Catalog=aspnet-OnTheSpot-20160829090657;Integrated Security=SSPI;AttachDBFilename=|DataDirectory|\aspnet-OnTheSpot-20160829090657.mdf" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="D:\\1_MY_FILES\\Uni\\IFB299\\IFB299\\OnTheSpot\ Revised\\OnTheSpot\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='DefaultConnection']/@connectionString" />
+  </parameter>
+  <parameter name="DatabaseModels-Web.config Connection String" description="DatabaseModels Connection String used in web.config by the application to access the database." defaultValue="Data Source=(LocalDb)\v11.0;Initial Catalog=aspnet-OnTheSpot-20160829090656;Integrated Security=SSPI;AttachDBFilename=|DataDirectory|\aspnet-OnTheSpot-20160829090656.mdf" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="D:\\1_MY_FILES\\Uni\\IFB299\\IFB299\\OnTheSpot\ Revised\\OnTheSpot\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='DatabaseModels']/@connectionString" />
+  </parameter>
+  <parameter name="DatabaseModels_DatabasePublish-Web.config Connection String" description="DatabaseModels_DatabasePublish Connection String used in web.config by the application to access the database." defaultValue="DatabaseModels_DatabasePublish.ConnetionString" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="D:\\1_MY_FILES\\Uni\\IFB299\\IFB299\\OnTheSpot\ Revised\\OnTheSpot\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='DatabaseModels_DatabasePublish']/@connectionString" />
+  </parameter>
+</parameters>
