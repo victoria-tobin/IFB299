@@ -1,1 +1,17 @@
+
+
+
 http://ifb299-001-site1.htempurl.com/
+
+
+
+Useful logins to test:
+
+Admin username: bwiley
+Admin password: admin1
+
+Courier username: alug
+Courier password: password
+
+Customer username: meeny
+Customer password: password
