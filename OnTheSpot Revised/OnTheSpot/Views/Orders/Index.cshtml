@@ -3,10 +3,11 @@
 
 <div>
     <ul id ="m">
-        <li>@Html.ActionLink("All Orders", "Index", "Orders")</li>
-        <li>@Html.ActionLink("Outstanding Orders", "Index", new { outstanding = true })</li>
+       
         @if (User.IsInRole("Admin"))
         {
+            <li>@Html.ActionLink("All Orders", "Index", "Orders")</li>
+            <li>@Html.ActionLink("Outstanding Orders", "Index", new { outstanding = true })</li>
             <li>@Html.ActionLink("Packages", "Index", "Packages")</li>
         }
         
@@ -40,7 +41,7 @@
             new { sortOrder = ViewBag.OrderIdSortParm, outstanding = ViewBag.IsOut, searchInt = ViewBag.Search })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.UserName)
+            @Html.DisplayNameFor(model => model.Username)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.UserId)
@@ -50,7 +51,9 @@
             new { sortOrder = ViewBag.DateSortParm, outstanding = ViewBag.IsOut, searchInt = ViewBag.Search })
 
         </th>
-        <th></th>
+        <th>
+            @Html.DisplayNameFor(model => model.Pickup)
+        </th>
     </tr>
     @if(User.IsInRole("Admin" )||User.IsInRole( "Courier"))
     {
@@ -60,7 +63,7 @@
                     @Html.DisplayFor(modelItem => item.OrderID)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.UserName)
+                    @Html.DisplayFor(modelItem => item.Username)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.UserId)
@@ -91,7 +94,7 @@
                         @Html.DisplayFor(modelItem => item.OrderID)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.UserName)
+                        @Html.DisplayFor(modelItem => item.Username)
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.UserId)

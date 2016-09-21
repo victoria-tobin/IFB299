@@ -30,6 +30,12 @@ namespace OnTheSpot
 
             Database.SetInitializer(new MigrateDatabaseToLatestVersion<DatabaseModels, Configuration>());
             new DatabaseModels().Users.Find(1);
+
+            if (!WebMatrix.WebData.WebSecurity.Initialized)
+            {
+                WebMatrix.WebData.WebSecurity.InitializeDatabaseConnection("DatabaseModels",
+                    "UserProfile", "UserId", "UserName", autoCreateTables: true);
+            }
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿@model Tuple<OnTheSpot.Models.Order, OnTheSpot.Models.Package>
+﻿@model OnTheSpot.Models.Order
 
 @{
     ViewBag.Title = "Create";
@@ -17,72 +17,50 @@
     </p>
 }
 
+@Html.HiddenFor(model=>model.OrderSubmitted)
+    @Html.HiddenFor(model=>model.Completed)
+    @Html.HiddenFor(model=>model.OrderID)
+
+    if(User.IsInRole("Customer"))
+    {
+        @Html.HiddenFor(model=>model.Username)
+    }
+    
+    if (User.IsInRole("Admin"))
+    {
+        @Html.HiddenFor(model=>model.Packages)
+    }
+
     <fieldset>
         <legend>Order</legend>
 
+        @if(User.IsInRole("Admin")) {
         <div class="editor-label">
-            @Html.LabelFor(tuple=> tuple.Item1.UserName)
+            @Html.LabelFor(model => model.Username)
         </div>
         <div class="editor-field">
-            @Html.EditorFor(tuple=> tuple.Item1.UserName)
-            @Html.ValidationMessageFor(tuple=> tuple.Item1.UserName)
+            @Html.EditorFor(model => model.Username)
+            @Html.ValidationMessageFor(model => model.Username)
+        </div>
+        }
+       
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Pickup)
+        </div>
+        <div class="editor-field">
+            @Html.CheckBoxFor(model => model.Pickup)
         </div>
 
-        <div class="editor-label">
-            @Html.LabelFor(tuple => tuple.Item1.OrderSubmitted)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(tuple => tuple.Item1.OrderSubmitted, "Date Order Submitted")
-            @Html.ValidationMessageFor(tuple => tuple.Item1.OrderSubmitted)
-        </div>
-        <div class="editor-label">
-            @Html.LabelFor(tuple => tuple.Item1.Pickup)
-        </div>
-        <div class="editor-field">
-            @Html.CheckBoxFor(tuple => tuple.Item1.Pickup)
-        </div>
-
-
-        <div class="editor-label">
-            @Html.LabelFor(tuple => tuple.Item2.Priority)
-        </div>
-        <div class="editor-field">
-            @Html.RadioButtonFor(tuple => tuple.Item2.Priority, "Standard", new { @checked = true }) Standard
-        </div>
-        <div class="editor-field">
-            @Html.RadioButtonFor(tuple => tuple.Item2.Priority, "High") High
-        </div>
-        <div class="editor-field">
-            @Html.RadioButtonFor(tuple => tuple.Item2.Priority, "Overnight") Overnight
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(tuple => tuple.Item2.Signature, "Signature on Deliver?")
-        </div>
-        <div class="editor-field">
-            @Html.CheckBoxFor(tuple => tuple.Item2.Signature)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(tuple => tuple.Item2.PickupAddress, "Pickup Address")
-        </div>
-        <div class="editor-field">
-            @Html.TextAreaFor(tuple => tuple.Item2.PickupAddress)
-            @Html.ValidationMessageFor(tuple => tuple.Item2.PickupAddress)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(tuple => tuple.Item2.DeliveryAddress, "Delivery Address")
-        </div>
-        <div class="editor-field">
-            @Html.TextAreaFor(tuple => tuple.Item2.DeliveryAddress)
-            @Html.ValidationMessageFor(tuple => tuple.Item2.DeliveryAddress)
-        </div>
-
+        @if(User.IsInRole("Customer"))
+        {
+            @Html.EditorFor(model => model.Packages)
+        }
+        
 
         <p>
             <input type="submit" value="Create" />
         </p>
+
     </fieldset>
 }
 

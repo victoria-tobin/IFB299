@@ -13,18 +13,20 @@ namespace OnTheSpot.Models
         [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
         public int OrderID { get; set; }
 
-        public string UserName { get; set; }
+        public string Username { get; set; }
 
         //[ForeignKey("UserProfile")]
         public int UserId //{ get; set; }
         {
-            get { return WebSecurity.GetUserId(UserName); }
+            get { return WebSecurity.GetUserId(Username); }
         }
 
         public DateTime OrderSubmitted { get; set; }
         public bool Completed { get; set; }
         public bool Pickup { get; set; }
 
+        public virtual UserProfile UserProfile { get; set; }
+        public virtual IEnumerable<Package> Packages { get; set; }
        // public virtual UserProfile UserProfile { get; set; }
 
     }

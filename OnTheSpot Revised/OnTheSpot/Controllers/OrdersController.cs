@@ -10,6 +10,7 @@ using OnTheSpot.DAL;
 using System.Web.Security;
 using WebMatrix.WebData;
 
+
 namespace OnTheSpot.Controllers
 {
     public class OrdersController : Controller
@@ -79,13 +80,74 @@ namespace OnTheSpot.Controllers
             return View(order);
         }
 
+
         //
         // GET: /Orders/Create
 
         public ActionResult Create()
         {
-            return View();
+            if (User.IsInRole("Admin"))
+            {
+                Order o = new Order()
+                {
+                    Username = "",
+                    OrderSubmitted = DateTime.Now,
+                    Completed = false,
+                    Pickup = false
+                };
+                return View(o);
+            }
+
+
+            if(User.IsInRole("Customer")) {
+
+                Order o = new Order()
+                {
+                    Username = WebSecurity.CurrentUserName,
+                    OrderSubmitted = DateTime.Now,
+                    Completed = false,
+                    Pickup = false
+                };
+            
+            
+                o.Packages = new List<Package>
+                {
+                    new Package
+                    {
+                        OrderID = o.OrderID,
+                        Priority = null,
+                        Status = Status.ReadyForPickup,
+                        PickupAddress = "",
+                        DeliveryAddress = "",
+                        Weight = 0,
+                        Collected = null,
+                        AssignedCourier = null, 
+                        Delivered = null
+
+                    }
+                };
+                /*
+                Packages = db.Packages
+                .Select(c => new Package
+                {
+                    OrderID = c.OrderID,
+                    Priority = c.Priority,
+                    Status = Status.ReadyForPickup,
+                    PickupAddress = c.PickupAddress,
+                    DeliveryAddress = c.DeliveryAddress,
+                    Weight = c.Weight,
+                    Collected = null,
+                    AssignedCourier = null, 
+                    Delivered = null
+                })
+                .ToList()
+            
+                 */
+                return View(o);
+            };
+               return View(); 
         }
+
 
         //
         // POST: /Orders/Create
@@ -97,12 +159,38 @@ namespace OnTheSpot.Controllers
 
             if (ModelState.IsValid)
             {
-                if (WebSecurity.UserExists(order.UserName))
+
+                    if (User.IsInRole("Customer"))
+                    {
+
+
+                        var o = new Order
+                        {
+                            Username = WebSecurity.CurrentUserName,
+                            OrderSubmitted = DateTime.Now,
+                            Completed = false,
+                            Pickup = order.Pickup
+                        };
+
+                        foreach (var p in order.Packages)
+                        {
+                            var pa = new Package { OrderID = o.OrderID };
+                            db.Packages.Add(pa);
+                        }
+
+                        db.Orders.Add(o);
+                        db.SaveChanges();
+
+                        return RedirectToAction("Index");
+
+                    }
+
+                if (WebSecurity.UserExists(order.Username))
                 {
-                    //order.UserId = WebSecurity.GetUserId(order.UserName);
                     db.Orders.Add(order);
                     db.SaveChanges();
-                    return RedirectToAction("Index");
+
+                    return RedirectToAction("Index", "Orders");
 
                 } else {
                     ViewBag.showError = true;

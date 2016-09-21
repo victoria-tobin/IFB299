@@ -90,11 +90,19 @@ namespace OnTheSpot.Migrations
             // Create new orders
             var orders = new List<Order>
             {
-                 //new Order { OrderID = 1,  UserName = "Eeny", OrderSubmitted = DateTime.Parse("1/09/2016"), Completed = true},
-                 //new Order { OrderID = 2,  UserName = "Eeny", OrderSubmitted = DateTime.Parse("31/08/2016"), Completed = true},
-                 //new Order { OrderID = 3,  UserName = "Moe", OrderSubmitted = DateTime.Parse("1/08/2016"), Completed = false},
-                 //new Order { OrderID = 4,  UserName = "Miny", OrderSubmitted = DateTime.Parse("15/07/2016"), Completed = false},
-                 //new Order { OrderID = 5,  UserName = "Meeny", OrderSubmitted = DateTime.Parse("2/07/2016"), Completed = false}
+                 //Australian date format
+                 new Order { OrderID = 1,  Username = "Eeny", OrderSubmitted = DateTime.Parse("21/09/2016"), Completed = false},
+                 new Order { OrderID = 2,  Username = "Eeny", OrderSubmitted = DateTime.Parse("20/09/2016"), Completed = false},
+                 new Order { OrderID = 3,  Username = "Moe", OrderSubmitted = DateTime.Parse("02/07/2016"), Completed = true},
+                 new Order { OrderID = 4,  Username = "Miny", OrderSubmitted = DateTime.Parse("05/08/2016"), Completed = true},
+                 new Order { OrderID = 5,  Username = "Meeny", OrderSubmitted = DateTime.Parse("22/09/2016"), Completed = false}
+
+                 //American date format (for website hosting??)
+                 //new Order { OrderID = 1,  Username = "Eeny", OrderSubmitted = DateTime.Parse("09/21/2016"), Completed = false},
+                 //new Order { OrderID = 2,  Username = "Eeny", OrderSubmitted = DateTime.Parse("09/20/2016"), Completed = false},
+                 //new Order { OrderID = 3,  Username = "Moe", OrderSubmitted = DateTime.Parse("07/02/2016"), Completed = true},
+                 //new Order { OrderID = 4,  Username = "Miny", OrderSubmitted = DateTime.Parse("08/05/2016"), Completed = true},
+                 //new Order { OrderID = 5,  Username = "Meeny", OrderSubmitted = DateTime.Parse("09/22/2016"), Completed = false}
             };
             orders.ForEach(s => context.Orders.AddOrUpdate(p => p.OrderID, s));
             context.SaveChanges();
@@ -102,7 +110,21 @@ namespace OnTheSpot.Migrations
             // Create new packages
             var packages = new List<Package>
             {
-                //new Package {PackageID = 1, OrderID = 1, Status = Status.AtWarehouse, PickupAddress = "Location 1", DeliveryAddress = "56 Albert St, Brisbane CBD", Weight = 15, Collected = DateTime.Parse("2/07/2016"), Delivered = null, Priority = Priority.High, AssignedCourier = "ABug"}
+                //Australian date format
+                new Package {PackageID = 1, OrderID = 1, Status = Status.AtWarehouse, PickupAddress = "Location 1", DeliveryAddress = "56 Albert St, Brisbane CBD", Weight = 15, Collected = DateTime.Parse("21/09/2016"), Delivered = null, Priority = Priority.High, AssignedCourier = "ABug"},
+                new Package {PackageID = 2, OrderID = 1, Status = Status.AtWarehouse, PickupAddress = "Location 1", DeliveryAddress = "20 Fairfield Rd, Annerley", Weight = 2, Collected = DateTime.Parse("21/09/2016"), Delivered = null, Priority = Priority.High, AssignedCourier = "ABug"},
+                new Package {PackageID = 3, OrderID = 2, Status = Status.ReadyForPickup, PickupAddress = "Location 2", DeliveryAddress = "Sydney", Weight = 50, Collected = DateTime.Parse("20/09/2016"), Delivered = null, Priority = Priority.Standard, AssignedCourier = "ALug"},
+                new Package {PackageID = 4, OrderID = 3, Status = Status.Delivered, PickupAddress = "Location 3", DeliveryAddress = "Wonderland", Weight = 1, Collected = DateTime.Parse("02/07/2016"), Delivered = DateTime.Parse("03/07/2016"), Priority = Priority.Overnight, AssignedCourier = "ALug"},
+                new Package {PackageID = 5, OrderID = 4, Status = Status.Delivered, PickupAddress = "Location 4", DeliveryAddress = "Here and there", Weight = 7, Collected = DateTime.Parse("05/08/2016"), Delivered = DateTime.Parse("09/05/2016"), Priority = Priority.Standard, AssignedCourier = "ABug"},
+                new Package {PackageID = 6, OrderID = 5, Status = Status.InTransit, PickupAddress = "Location 5", DeliveryAddress = "Location 1", Weight = 4, Collected = DateTime.Parse("22/09/2016"), Delivered = null, Priority = Priority.Standard, AssignedCourier = "ABug"}
+
+                //American date format (for website hosting??)
+                //new Package {PackageID = 1, OrderID = 1, Status = Status.AtWarehouse, PickupAddress = "Location 1", DeliveryAddress = "56 Albert St, Brisbane CBD", Weight = 15, Collected = DateTime.Parse("09/21/2016"), Delivered = null, Priority = Priority.High, AssignedCourier = "ABug"},
+                //new Package {PackageID = 2, OrderID = 1, Status = Status.AtWarehouse, PickupAddress = "Location 1", DeliveryAddress = "20 Fairfield Rd, Annerley", Weight = 2, Collected = DateTime.Parse("09/21/2016"), Delivered = null, Priority = Priority.High, AssignedCourier = "ABug"},
+                //new Package {PackageID = 3, OrderID = 2, Status = Status.ReadyForPickup, PickupAddress = "Location 2", DeliveryAddress = "Sydney", Weight = 50, Collected = DateTime.Parse("09/20/2016"), Delivered = null, Priority = Priority.Standard, AssignedCourier = "ALug"},
+                //new Package {PackageID = 4, OrderID = 3, Status = Status.Delivered, PickupAddress = "Location 3", DeliveryAddress = "Wonderland", Weight = 1, Collected = DateTime.Parse("07/02/2016"), Delivered = DateTime.Parse("07/03/2016"), Priority = Priority.Overnight, AssignedCourier = "ALug"},
+                //new Package {PackageID = 5, OrderID = 4, Status = Status.Delivered, PickupAddress = "Location 4", DeliveryAddress = "Here and there", Weight = 7, Collected = DateTime.Parse("08/05/2016"), Delivered = DateTime.Parse("05/09/2016"), Priority = Priority.Standard, AssignedCourier = "ABug"},
+                //new Package {PackageID = 6, OrderID = 5, Status = Status.InTransit, PickupAddress = "Location 5", DeliveryAddress = "Location 1", Weight = 4, Collected = DateTime.Parse("09/22/2016"), Delivered = null, Priority = Priority.Standard, AssignedCourier = "ABug"}
 
             };
             packages.ForEach(s => context.Packages.AddOrUpdate(p => p.PackageID, s));

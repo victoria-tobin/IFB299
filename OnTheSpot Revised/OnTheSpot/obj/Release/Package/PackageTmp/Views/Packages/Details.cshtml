@@ -9,26 +9,52 @@
 <fieldset>
     <legend>Package</legend>
 
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.Order.UserName)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Order.UserName)
-    </div>
 
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.Signature)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Signature)
-    </div>
+    
+        <table>
+        <tr>
+            <td>@Html.LabelFor(model => model.PackageID)</td>
+            <td>@Html.DisplayFor(model => model.PackageID)</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(model => model.OrderID)</td>
+            <td>@Html.DisplayFor(model => model.OrderID)</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(model => model.Status)</td>
+            <td>@Html.DisplayFor(model => model.Status)</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(model => model.PickupAddress)</td>
+            <td>@Html.DisplayFor(model => model.PickupAddress)</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(model => model.DeliveryAddress)</td>
+            <td>@Html.DisplayFor(model => model.DeliveryAddress)</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(model => model.Priority)</td>
+            <td>@Html.DisplayFor(model => model.Priority)</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(model => model.Weight)</td>
+            <td>@Html.DisplayFor(model => model.Weight)</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(model => model.Collected)</td>
+            <td>@Html.DisplayFor(model => model.Collected)</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(model => model.Delivered)</td>
+            <td>@Html.DisplayFor(model => model.Delivered)</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(model => model.AssignedCourier)</td>
+            <td>@Html.DisplayFor(model => model.AssignedCourier)</td>
+        </tr>
 
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.AssignedCourier)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.AssignedCourier)
-    </div>
+    </table>
+
 </fieldset>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id=Model.PackageID }) |

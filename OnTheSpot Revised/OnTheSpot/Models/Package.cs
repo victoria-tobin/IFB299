@@ -28,11 +28,11 @@ namespace OnTheSpot.Models
         public string DeliveryAddress { get; set; }
         public Priority? Priority { get; set; }
         public float Weight { get; set; }
-        public DateTime Collected { get; set; }
+        public DateTime? Collected { get; set; }
         //public DateTime AtWarehouse { get; set; }
         //public DateTime InTransit { get; set; }
         public DateTime? Delivered { get; set; }
-        public bool Signature { get; set; }
+        //public bool Signature { get; set; }
         public string AssignedCourier { get; set; }
 
         public virtual Order Order { get; set; }
