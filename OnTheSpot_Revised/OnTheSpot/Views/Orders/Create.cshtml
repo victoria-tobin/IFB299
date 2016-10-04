@@ -17,18 +17,13 @@
     </p>
 }
 
-@Html.HiddenFor(model=>model.OrderSubmitted)
-    @Html.HiddenFor(model=>model.Completed)
-    @Html.HiddenFor(model=>model.OrderID)
+@Html.HiddenFor(model => model.OrderSubmitted)
+    @Html.HiddenFor(model => model.Completed)
+    @Html.HiddenFor(model => model.OrderID)
 
     if(User.IsInRole("Customer"))
     {
         @Html.HiddenFor(model=>model.Username)
-    }
-    
-    if (User.IsInRole("Admin"))
-    {
-        @Html.HiddenFor(model=>model.Packages)
     }
 
     <fieldset>
@@ -43,7 +38,21 @@
             @Html.ValidationMessageFor(model => model.Username)
         </div>
         }
-       
+      
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PickupAddress)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PickupAddress)
+            @Html.ValidationMessageFor(model => model.PickupAddress)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.DeliveryAddress)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.DeliveryAddress)
+            @Html.ValidationMessageFor(model => model.DeliveryAddress)
+        </div>
         <div class="editor-label">
             @Html.LabelFor(model => model.Pickup)
         </div>
@@ -51,12 +60,20 @@
             @Html.CheckBoxFor(model => model.Pickup)
         </div>
 
-        @if(User.IsInRole("Customer"))
-        {
-            @Html.EditorFor(model => model.Packages)
-        }
-        
 
+        <div>
+            @Html.ActionLink("Add Package", "AddPackage", new { id = ViewBag.OrderID, i = ViewBag.numPack })
+        </div>
+        <div>
+            @Html.ActionLink("Remove Package", "RemovePackage", new { id = ViewBag.OrderID, i = ViewBag.numPack })
+        </div>
+        <div>
+            (for orders with more than 3 packages please contact support)
+        </div>
+
+        @Html.EditorFor(model => model.Packages)
+        
+  
         <p>
             <input type="submit" value="Create" />
         </p>

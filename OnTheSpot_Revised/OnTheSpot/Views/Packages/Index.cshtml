@@ -15,7 +15,7 @@
 }
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("New Package", "Create")
 </p>
 
 @using (Html.BeginForm())
@@ -48,7 +48,7 @@
         <th>
             @Html.DisplayNameFor(model => model.AssignedCourier)
         </th>
-        <th></th>
+
     </tr>
 
 @foreach (var item in Model) {
@@ -82,18 +82,12 @@
 </table>
 
 <br />
-<h3> Pickup and Delivery Address </h3>
+<h3> Dates </h3>
 
 <table>
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.PackageID)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PickupAddress)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DeliveryAddress)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Collected)
@@ -108,12 +102,6 @@
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.PackageID)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PickupAddress)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DeliveryAddress)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Collected)

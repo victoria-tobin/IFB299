@@ -25,12 +25,26 @@
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.OrderSubmitted)
+            @Html.LabelFor(model => model.PickupAddress)
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.OrderSubmitted)
-            @Html.ValidationMessageFor(model => model.OrderSubmitted)
+            @Html.EditorFor(model => model.PickupAddress)
+            @Html.ValidationMessageFor(model => model.PickupAddress)
         </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.DeliveryAddress)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.DeliveryAddress)
+            @Html.ValidationMessageFor(model => model.DeliveryAddress)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Pickup)
+        </div>
+        <div class="editor-field">
+            @Html.CheckBoxFor(model => model.Pickup)
+        </div>
+
         @if (User.IsInRole("Admin") || User.IsInRole("Courier"))
         {
             <div class="editor-label">
@@ -42,12 +56,7 @@
             </div>
         }
         
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Pickup)
-        </div>
-        <div class="editor-field">
-            @Html.CheckBoxFor(model => model.Pickup)
-        </div>
+
 
         <p>
             <input type="submit" value="Save" />

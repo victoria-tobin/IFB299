@@ -324,6 +324,7 @@
     <Content Include="Views\Users\Edit.cshtml" />
     <Content Include="Views\Users\Delete.cshtml" />
     <Content Include="Views\Orders\EditorTemplates\Package.cshtml" />
+    <Content Include="Views\Orders\Packages.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
