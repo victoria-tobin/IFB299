@@ -15,19 +15,20 @@ namespace OnTheSpot.Models
 
         public string Username { get; set; }
 
-        //[ForeignKey("UserProfile")]
-        public int UserId //{ get; set; }
+        public int UserId 
         {
             get { return WebSecurity.GetUserId(Username); }
         }
 
         public DateTime OrderSubmitted { get; set; }
-        public bool Completed { get; set; }
+
+        public string PickupAddress { get; set; }
+        public string DeliveryAddress { get; set; }
         public bool Pickup { get; set; }
+        public bool Completed { get; set; }
 
         public virtual UserProfile UserProfile { get; set; }
-        public virtual IEnumerable<Package> Packages { get; set; }
-       // public virtual UserProfile UserProfile { get; set; }
+        public virtual List<Package> Packages { get; set; }
 
     }
 }

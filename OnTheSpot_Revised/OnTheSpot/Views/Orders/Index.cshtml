@@ -20,7 +20,7 @@
 }
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("New Order", "Create")
 </p>
 
 
@@ -47,13 +47,20 @@
             @Html.DisplayNameFor(model => model.UserId)
         </th>
         <th>
+            @Html.DisplayNameFor(model => model.Pickup)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PickupAddress)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DeliveryAddress)
+        </th>
+        <th>
             @Html.ActionLink("Order Submitted", "Index", 
             new { sortOrder = ViewBag.DateSortParm, outstanding = ViewBag.IsOut, searchInt = ViewBag.Search })
 
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Pickup)
-        </th>
+
     </tr>
     @if(User.IsInRole("Admin" )||User.IsInRole( "Courier"))
     {
@@ -69,11 +76,18 @@
                     @Html.DisplayFor(modelItem => item.UserId)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.OrderSubmitted)
-                </td>
-                <td>
                     @Html.DisplayFor(modelItem => item.Pickup)
                 </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PickupAddress)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DeliveryAddress)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OrderSubmitted)
+                </td>
+
                 <td>
                     @Html.ActionLink("Edit", "Edit", new { id = item.OrderID }) |
                     @Html.ActionLink("Details", "Details", new { id=item.OrderID }) |
@@ -100,10 +114,16 @@
                         @Html.DisplayFor(modelItem => item.UserId)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.OrderSubmitted)
+                        @Html.DisplayFor(modelItem => item.Pickup)
                     </td>
                     <td>
-                         @Html.DisplayFor(modelItem => item.Pickup)
+                        @Html.DisplayFor(modelItem => item.PickupAddress)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DeliveryAddress)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.OrderSubmitted)
                     </td>
                     <td>
                         @Html.ActionLink("Edit", "Edit", new { id = item.OrderID })

@@ -53,23 +53,6 @@
         <div class="editor-field">
             @Html.RadioButtonFor(model => model.Status, "Delivered") Delivered
         </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.PickupAddress, "Pickup Address")
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.PickupAddress)
-            @Html.ValidationMessageFor(model => model.PickupAddress)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.DeliveryAddress, "DeliveryAddress")
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.DeliveryAddress)
-            @Html.ValidationMessageFor(model => model.DeliveryAddress)
-        </div>
-
                 <div class="editor-label">
             @Html.LabelFor(model => model.Weight, "Weight")
         </div>

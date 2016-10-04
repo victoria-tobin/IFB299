@@ -80,75 +80,98 @@ namespace OnTheSpot.Controllers
             return View(order);
         }
 
+        public Package CreatePackage(int orderID)
+        {
+            Package p = new Package
+            {
+                OrderID = orderID,
+                Priority = null,
+                Status = Status.ReadyForPickup,
+                Weight = 0,
+                Collected = null,
+                AssignedCourier = null,
+                Delivered = null
+            };
+
+            return p;
+        }
+
+        
+        public ActionResult AddPackage(int id, int i)
+        {
+            if (i < 2)
+            {
+                i++;
+            }
+            return RedirectToAction("Create", new { numPack = i });
+        }
+
+        public ActionResult RemovePackage(int id, int i)
+        {
+            if (i > 0)
+            {
+                i--;
+            }
+            return RedirectToAction("Create", new { numPack = i });
+        }
 
         //
         // GET: /Orders/Create
 
-        public ActionResult Create()
+        public ActionResult Create(int? numPack)
         {
-            if (User.IsInRole("Admin"))
-            {
+
+            // select list for couriers
+            var cour = db.Users.Where(p => p.UserRole == "Courier");
+            ViewBag.Cour = new SelectList(cour, "UserName", "UserName");
+ 
                 Order o = new Order()
                 {
                     Username = "",
                     OrderSubmitted = DateTime.Now,
-                    Completed = false,
-                    Pickup = false
+                    PickupAddress = "",
+                    DeliveryAddress = "",
+                    Pickup = false,
+                    Completed = false
+                    
                 };
+
+                if (User.IsInRole("Customer"))
+                {
+                    o.Username = WebSecurity.CurrentUserName;
+                }
+
+
+                o.Packages = new List<Package>();
+                o.Packages.Add(CreatePackage(o.OrderID));
+
+                if (numPack == null)
+                {
+                    numPack = 0;
+                } 
+
+                ViewBag.OrderID = o.OrderID;
+                ViewBag.numPack = numPack;
+
+                for (int i = 0; i < numPack; i++)
+                {
+                    o.Packages.Add(CreatePackage(o.OrderID));
+                }
+
+                
+                
                 return View(o);
-            }
-
-
-            if(User.IsInRole("Customer")) {
-
-                Order o = new Order()
-                {
-                    Username = WebSecurity.CurrentUserName,
-                    OrderSubmitted = DateTime.Now,
-                    Completed = false,
-                    Pickup = false
-                };
-            
-            
-                o.Packages = new List<Package>
-                {
-                    new Package
-                    {
-                        OrderID = o.OrderID,
-                        Priority = null,
-                        Status = Status.ReadyForPickup,
-                        PickupAddress = "",
-                        DeliveryAddress = "",
-                        Weight = 0,
-                        Collected = null,
-                        AssignedCourier = null, 
-                        Delivered = null
-
-                    }
-                };
-                /*
-                Packages = db.Packages
-                .Select(c => new Package
-                {
-                    OrderID = c.OrderID,
-                    Priority = c.Priority,
-                    Status = Status.ReadyForPickup,
-                    PickupAddress = c.PickupAddress,
-                    DeliveryAddress = c.DeliveryAddress,
-                    Weight = c.Weight,
-                    Collected = null,
-                    AssignedCourier = null, 
-                    Delivered = null
-                })
-                .ToList()
-            
-                 */
-                return View(o);
-            };
-               return View(); 
         }
+        /*
+        public ActionResult Packages(List<Package> packages)
+        {
+            // select list for couriers
+            var cour = db.Users.Where(p => p.UserRole == "Courier");
+            ViewBag.Cour = new SelectList(cour, "UserName", "UserName");
 
-
+            return PartialView(packages);
+        }
+         */
         //
         // POST: /Orders/Create
 
@@ -160,42 +183,56 @@ namespace OnTheSpot.Controllers
             if (ModelState.IsValid)
             {
 
-                    if (User.IsInRole("Customer"))
-                    {
-
+                if (WebSecurity.UserExists(order.Username))
+                {
 
                         var o = new Order
                         {
-                            Username = WebSecurity.CurrentUserName,
+                            Username = order.Username, 
                             OrderSubmitted = DateTime.Now,
+                            PickupAddress = order.PickupAddress,
+                            DeliveryAddress = order.DeliveryAddress,
+                            Pickup = order.Pickup,
                             Completed = false,
-                            Pickup = order.Pickup
+                            Packages = new List<Package>()
                         };
+
+                        //o.Packages = new List<Package>();
 
                         foreach (var p in order.Packages)
                         {
-                            var pa = new Package { OrderID = o.OrderID };
-                            db.Packages.Add(pa);
-                        }
 
+                            var pa = new Package { 
+                                OrderID = o.OrderID,
+                                Status = Status.ReadyForPickup,
+                                Priority = p.Priority,
+                                Weight = p.Weight,
+                                AssignedCourier = p.AssignedCourier
+                            };
+
+                            o.Packages.Add(pa);
+                            //db.Packages.Add(pa);
+                                
+                        }
+                        
+
+                       
                         db.Orders.Add(o);
                         db.SaveChanges();
-
-                        return RedirectToAction("Index");
-
-                    }
-
-                if (WebSecurity.UserExists(order.Username))
-                {
-                    db.Orders.Add(order);
-                    db.SaveChanges();
-
+                    
                     return RedirectToAction("Index", "Orders");
 
                 } else {
                     ViewBag.showError = true;
                     ModelState.AddModelError("error", "Username not found");
                 }
+
+
+
+
+
+
+
             }
 
             return View(order);

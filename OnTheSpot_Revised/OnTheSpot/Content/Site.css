@@ -79,6 +79,13 @@ ul#album-list li a span
 	color: #fff !important;
 }
 
+.partialViewWrapper
+{
+    height:200px;
+    width:200px;
+    overflow-y:auto;
+}
+
 #footer
 {
 	clear: both;

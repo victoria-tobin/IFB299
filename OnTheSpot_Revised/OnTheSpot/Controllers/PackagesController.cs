@@ -52,12 +52,26 @@ namespace OnTheSpot.Controllers
 
         public ActionResult Create()
         {
+
+            Package pack = new Package()
+            {
+                OrderID = 1,
+                Priority = null,
+                Status = Status.ReadyForPickup,
+                Weight = 0,
+                Collected = null,
+                AssignedCourier = null,
+                Delivered = null
+            };
+
             // select list for couriers
             var cour = db.Users.Where(p => p.UserRole == "Courier");
             ViewBag.Cour = new SelectList(cour, "UserName", "UserName");
 
+            // select list for order ID
             ViewBag.OrderID = new SelectList(db.Orders, "OrderID", "OrderID");
-            return View();
+
+            return View(pack);
         }
 
         //
@@ -69,16 +83,29 @@ namespace OnTheSpot.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Packages.Add(package);
+
+                var p = new Package
+                {
+                    OrderID = package.OrderID,
+                    Status = Status.ReadyForPickup,
+                    Priority = package.Priority,
+                    Weight = package.Weight,
+                    AssignedCourier = package.AssignedCourier
+                };
+
+                db.Packages.Add(p);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+
             // select list for couriers
             var cour = db.Users.Where(p => p.UserRole == "Courier");
             ViewBag.Cour = new SelectList(cour, "UserName", "UserName");
 
+            // select list for order ID
             ViewBag.OrderID = new SelectList(db.Orders, "OrderID", "OrderID", package.OrderID);
-            
+
+
             return View(package);
         }
 
@@ -87,42 +114,11 @@ namespace OnTheSpot.Controllers
 
         public ActionResult Edit(int id = 0)
         {
-            // update order completed field ###################################################################
             Package package = db.Packages.Find(id);
             if (package == null)
             {
                 return HttpNotFound();
             }
-
-
-            /*
-             * Can't get the selected value to work
-            
-            // select list for priority
-            var prior = from Priority p in Enum.GetValues(typeof(Priority))
-                        select new SelectListItem { Value = p.ToString(), Text = p.ToString(), Selected = (p.Equals(package.Priority)) };
-            ViewBag.Priority = new SelectList(prior, "Value", "Text", package.Priority);
-
-            
-             // select list for status
-             var status = from Status s in Enum.GetValues(typeof(Status))
-                          select new { ID = (int)package.Status, Name = package.Status.ToString() };
-             ViewBag.Status = new SelectList(status, "ID", "Name", package.Status.ToString());
-             * 
-             * @Html.DropDownListFor(model => model.Status, (SelectList)ViewBag.Status, Model.Status)
-            @Html.ValidationMessageFor(model => model.Status)
-             * 
-             * 
-             *         <div class="editor-label">
-            @Html.LabelFor(model => model.OrderID, "Order")
-        </div>
-        <div class="editor-field">
-            @Html.DropDownList("Ord", string.Empty)
-            @Html.ValidationMessageFor(model => model.OrderID)
-        </div>
-
-            */
-
 
             // select list for couriers
             var cour = db.Users.Where(p => p.UserRole == "Courier");
