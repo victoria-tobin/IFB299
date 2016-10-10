@@ -71,11 +71,22 @@
         <td>
             @Html.DisplayFor(modelItem => item.AssignedCourier)
         </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.PackageID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.PackageID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.PackageID })
-        </td>
+        @if (User.IsInRole("Admin"))
+        {
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.PackageID }) |
+                @Html.ActionLink("Details", "Details", new { id=item.PackageID }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.PackageID })
+            </td>
+        }
+        @if(User.IsInRole("Courier"))
+        {
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.PackageID }) |
+                @Html.ActionLink("Details", "Details", new { id=item.PackageID }) 
+            </td>
+        }
+        
     </tr>
 }
 

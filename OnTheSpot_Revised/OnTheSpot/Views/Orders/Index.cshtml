@@ -4,11 +4,14 @@
 <div>
     <ul id ="m">
        
-        @if (User.IsInRole("Admin"))
+        @if (User.IsInRole("Admin")||User.IsInRole("Courier"))
         {
             <li>@Html.ActionLink("All Orders", "Index", "Orders")</li>
-            <li>@Html.ActionLink("Outstanding Orders", "Index", new { outstanding = true })</li>
             <li>@Html.ActionLink("Packages", "Index", "Packages")</li>
+            if(User.IsInRole("Admin"))
+            {
+                <li>@Html.ActionLink("Outstanding Orders", "Index", new { outstanding = true })</li>
+            }
         }
         
     </ul>
@@ -60,6 +63,9 @@
             new { sortOrder = ViewBag.DateSortParm, outstanding = ViewBag.IsOut, searchInt = ViewBag.Search })
 
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Completed)
+        </th>
 
     </tr>
     @if(User.IsInRole("Admin" )||User.IsInRole( "Courier"))
@@ -86,6 +92,9 @@
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.OrderSubmitted)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Completed)
                 </td>
 
                 <td>
