@@ -26,6 +26,9 @@ namespace OnTheSpot.Models
         public Status? Status { get; set; }
         public Priority? Priority { get; set; }
         public float Weight { get; set; }
+        public float Height { get; set; }
+        public float Width { get; set; }
+        public float Length { get; set; }
         public DateTime? Collected { get; set; }
         public DateTime? Delivered { get; set; }
         public string AssignedCourier { get; set; }

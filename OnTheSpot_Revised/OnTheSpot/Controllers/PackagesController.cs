@@ -139,12 +139,13 @@ namespace OnTheSpot.Controllers
                 db.Entry(package).State = EntityState.Modified;
                 if(package.Status == Status.Delivered)
                 {
-                    var orderID = db.Packages.Where(p => p.OrderID == package.OrderID);
+                    var orderID = db.Packages.Find(package.OrderID).OrderID;
                     var sameOrder = db.Packages.Count(p => p.OrderID == package.OrderID);
                     if(sameOrder == 1)
                     {
                         db.Orders.Find(orderID).Completed = true;
-                    } else if(db.Packages.Count(p => p.OrderID == package.OrderID && p.Status == Status.Delivered) == sameOrder)
+                    } 
+                    else if(db.Packages.Count(p => p.OrderID == package.OrderID && p.Status == Status.Delivered) == sameOrder)
                     {
                         db.Orders.Find(orderID).Completed = true;
                     }

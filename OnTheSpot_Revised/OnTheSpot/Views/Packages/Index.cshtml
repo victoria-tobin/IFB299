@@ -129,3 +129,48 @@
 }
 
 </table>
+<h4> Couriers </h4>
+<table>
+    <tr>
+        <th>
+            @Html.DisplayName("Courier name")
+        </th>
+        <th>
+            @Html.DisplayName("Weight")
+        </th>
+        <th>
+            @Html.DisplayName("Length")
+        </th>
+        <th>
+            @Html.DisplayName("Width")
+        </th>
+        <th>
+            @Html.DisplayName("Height")
+        </th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            @if(!item.AssignedCourier.IsEmpty()) 
+            {
+                <td>
+                    @Html.DisplayFor(modelItem => item.AssignedCourier)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Weight)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Length)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Width)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Height)
+                </td>
+            }
+            
+        </tr>
+    }
+
+</table>
