@@ -53,13 +53,35 @@
         <div class="editor-field">
             @Html.RadioButtonFor(model => model.Status, "Delivered") Delivered
         </div>
-                <div class="editor-label">
+        <div class="editor-label">
             @Html.LabelFor(model => model.Weight, "Weight")
         </div>
         <div class="editor-field">
             @Html.EditorFor(model => model.Weight)
             @Html.ValidationMessageFor(model => model.Weight)
         </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Length, "Length")
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Length)
+            @Html.ValidationMessageFor(model => model.Length)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Weight, "Width")
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Width)
+            @Html.ValidationMessageFor(model => model.Width)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Weight, "Height")
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Height)
+            @Html.ValidationMessageFor(model => model.Height)
+        </div>
+
 
         <div class="editor-label">
             @Html.LabelFor(model => model.Collected, "Collected")
