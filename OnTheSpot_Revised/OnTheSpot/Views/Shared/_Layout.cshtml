@@ -27,13 +27,21 @@
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("About", "About", "Home")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    
+                    
+                    if (User.IsInRole("Courier"))
+                    {
+                    <li>@Html.ActionLink("Deliveries", "Index", "Orders")</li>
+                    } else {
+                        
                     <li>@Html.ActionLink("Orders", "Index", "Orders")</li>
+                    }
                     
                     if (User.IsInRole("Admin"))
                     {
                     <li>@Html.ActionLink("Users", "Index", "Users")</li>
                     }
-                    
+
                     
                 } else {
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>

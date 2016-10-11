@@ -6,12 +6,15 @@
        
         @if (User.IsInRole("Admin")||User.IsInRole("Courier"))
         {
-            <li>@Html.ActionLink("All Orders", "Index", "Orders")</li>
-            <li>@Html.ActionLink("Packages", "Index", "Packages")</li>
             if(User.IsInRole("Admin"))
             {
+                <li>@Html.ActionLink("All Orders", "Index", "Orders")</li>
                 <li>@Html.ActionLink("Outstanding Orders", "Index", new { outstanding = true })</li>
+            } else {
+             <li>@Html.ActionLink("Orders", "Index", "Orders")</li>   
             }
+            <li>@Html.ActionLink("Packages", "Index", "Packages")</li>
+
         }
         
     </ul>
@@ -21,11 +24,11 @@
 @{
     ViewBag.Title = "Index";
 }
-
+@if (User.IsInRole("Admin") || User.IsInRole("Customer")) {
 <p>
     @Html.ActionLink("New Order", "Create")
 </p>
-
+}
 
 
 @using (Html.BeginForm())
@@ -68,9 +71,11 @@
         </th>
 
     </tr>
-    @if(User.IsInRole("Admin" )||User.IsInRole( "Courier"))
-    {
-        foreach (var item in Model) {
+    
+    
+        @foreach (var item in Model) {
+            
+            if(User.IsInRole("Admin" )|| User.IsInRole( "Courier")) {
             <tr>
                 <td>
                     @Html.DisplayFor(modelItem => item.OrderID)
@@ -93,22 +98,25 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.OrderSubmitted)
                 </td>
+
+
                 <td>
                     @Html.DisplayFor(modelItem => item.Completed)
                 </td>
-
+                @if (User.IsInRole("Admin")) {
                 <td>
                     @Html.ActionLink("Edit", "Edit", new { id = item.OrderID }) |
                     @Html.ActionLink("Details", "Details", new { id=item.OrderID }) |
                     @Html.ActionLink("Delete", "Delete", new { id=item.OrderID })
                 </td>
-        
+                }
             </tr>
-        }
-    }else
-    {
+    }
+    }
+    
+    
         
-        foreach (var item in Model)
+        @foreach (var item in Model)
         {
             if(item.UserId == WebSecurity.GetUserId(User.Identity.Name))
             {
@@ -140,6 +148,5 @@
                 </tr>
             }
         }
-    }
 
 </table>

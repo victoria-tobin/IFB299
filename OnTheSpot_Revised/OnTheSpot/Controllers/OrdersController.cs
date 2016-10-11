@@ -30,6 +30,23 @@ namespace OnTheSpot.Controllers
             var orders = from o in db.Orders
                          select o;
 
+            if (User.IsInRole("Courier"))
+            {
+                var packages = from p in db.Packages.Where(p => p.AssignedCourier == WebSecurity.CurrentUserName)
+                               select p.Order;
+                /*
+                orders = from o in db.Orders.Where(o => o.OrderID )
+                         //from p in packs.Where(p => p.AssignedCourier == WebSecurity.CurrentUserName)
+
+                         select o;
+                */
+
+                orders = from p in packages
+                         select p;
+
+
+            }
+            
             if (outstanding != null)
             {
                 orders = from o in orders.Where(o => o.Completed == false)

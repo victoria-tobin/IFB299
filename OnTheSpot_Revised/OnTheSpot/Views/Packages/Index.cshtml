@@ -2,11 +2,18 @@
 
 
 <div>
+    
     <ul id ="m">
-        <li>@Html.ActionLink("All Orders", "Index", "Orders")</li>
-        <li>@Html.ActionLink("Outstanding Orders", "Index", "Orders", new { outstanding = true }, null)</li>
+        
+    @if (User.IsInRole("Admin")) {
+    <li>@Html.ActionLink("All Orders", "Index", "Orders")</li>
+    <li>@Html.ActionLink("Outstanding Orders", "Index", "Orders", new { outstanding = true }, null)</li>
+    } else {
+    <li>@Html.ActionLink("Orders", "Index", "Orders")</li>
+    }
         <li>@Html.ActionLink("Packages", "Index", "Packages")</li>
     </ul>
+    
 </div>
 
 
@@ -15,7 +22,9 @@
 }
 
 <p>
+    @if (User.IsInRole("Admin")) {
     @Html.ActionLink("New Package", "Create")
+    }
 </p>
 
 @using (Html.BeginForm())
@@ -45,10 +54,11 @@
         <th>
             @Html.DisplayNameFor(model => model.Weight)
         </th>
+        @if (User.IsInRole("Admin")) {
         <th>
             @Html.DisplayNameFor(model => model.AssignedCourier)
         </th>
-
+        }
     </tr>
 
 @foreach (var item in Model) {
@@ -68,9 +78,11 @@
         <td>
             @Html.DisplayFor(modelItem => item.Weight)
         </td>
+        @if (User.IsInRole("Admin")) {
         <td>
             @Html.DisplayFor(modelItem => item.AssignedCourier)
         </td>
+        }
         @if (User.IsInRole("Admin"))
         {
             <td>
@@ -127,7 +139,6 @@
         </td>
     </tr>
 }
-
 </table>
 <h4> Couriers </h4>
 <table>
