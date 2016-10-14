@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
@@ -29,22 +30,15 @@ namespace OnTheSpot.Models
         public float Height { get; set; }
         public float Width { get; set; }
         public float Length { get; set; }
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd HH:mm}", ApplyFormatInEditMode = true)]
         public DateTime? Collected { get; set; }
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd HH:mm}", ApplyFormatInEditMode = true)]
         public DateTime? Delivered { get; set; }
         public string AssignedCourier { get; set; }
         
 
         public virtual Order Order { get; set; }
         public virtual UserProfile UserProfile { get; set; }
-
-
-
-        // Pickup location, 
-        // date and time for pick up, 
-        // date and time for delivery, 
-        // delivery status, 
-        // priority, 
-        // weight
 
     }
 }
