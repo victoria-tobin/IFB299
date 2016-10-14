@@ -95,7 +95,7 @@ namespace OnTheSpot.Migrations
                  new Order { OrderID = 2,  Username = "Eeny", PickupAddress = "Here", DeliveryAddress = "There", OrderSubmitted = DateTime.Parse("20/09/2016"), Completed = false},
                  new Order { OrderID = 3,  Username = "Moe", PickupAddress = "Underhill", DeliveryAddress = "Mordor", OrderSubmitted = DateTime.Parse("02/07/2016"), Completed = true},
                  new Order { OrderID = 4,  Username = "Miny", PickupAddress = "Somewhere", DeliveryAddress = "Anywhere", OrderSubmitted = DateTime.Parse("05/08/2016"), Completed = true},
-                 new Order { OrderID = 5,  Username = "Meeny", PickupAddress = "Brisbane", DeliveryAddress = "Gold Coast", OrderSubmitted = DateTime.Parse("22/09/2016"), Completed = false}
+                 new Order { OrderID = 5,  Username = "Meeny", PickupAddress = "Brisbane", DeliveryAddress = "Gold Coast", OrderSubmitted = DateTime.Parse("09/05/2016"), Completed = false}
 
             };
             orders.ForEach(s => context.Orders.AddOrUpdate(p => p.OrderID, s));
