@@ -58,6 +58,9 @@
         <th>
             @Html.DisplayNameFor(model => model.AssignedCourier)
         </th>
+            <th>
+
+            </th>
         }
     </tr>
 
@@ -144,6 +147,9 @@
 <table>
     <tr>
         <th>
+            @Html.DisplayName("Package ID")
+        </th>
+        <th>
             @Html.DisplayName("Courier name")
         </th>
         <th>
@@ -164,6 +170,9 @@
         <tr>
             @if(!item.AssignedCourier.IsEmpty()) 
             {
+                <td>
+                    @Html.DisplayFor(modelItem => item.PackageID)
+                </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.AssignedCourier)
                 </td>

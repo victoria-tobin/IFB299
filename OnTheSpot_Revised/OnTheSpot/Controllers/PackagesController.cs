@@ -7,10 +7,9 @@ using System.Web;
 using System.Web.Mvc;
 using OnTheSpot.Models;
 using OnTheSpot.DAL;
-<<<<<<< Updated upstream
-=======
+
 using WebMatrix.WebData;
->>>>>>> Stashed changes
+
 
 namespace OnTheSpot.Controllers
 {
@@ -27,16 +26,15 @@ namespace OnTheSpot.Controllers
             ViewBag.Search = searchInt;
 
             var packages = from p in db.Packages
-<<<<<<< Updated upstream
                            select p;
-=======
-                                           select p;
+
+                                          
             if (User.IsInRole("Courier"))
             {
                 packages = from p in db.Packages.Where(p => p.AssignedCourier == WebSecurity.CurrentUserName)
                                select p;
             }
->>>>>>> Stashed changes
+
 
             if (searchInt != null)
             {
