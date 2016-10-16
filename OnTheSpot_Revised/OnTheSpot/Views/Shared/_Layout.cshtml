@@ -11,7 +11,13 @@
     <body>
         <header>
             <div id="header">
-            <h1>----OnTheSpot----</h1>
+            <!--<h1>----OnTheSpot----</h1>-->
+            <div class="float-left">
+                <p class="site-title">
+                    <a runat="server" href="~/"><img src="~/Images/buttons/OnTheSpotLogoPNG2.png" alt="" /></a>
+                </p>
+            </div>
+            
             <ul id="navlist">
                 @if (Request.IsAuthenticated) {
                 <text>    
