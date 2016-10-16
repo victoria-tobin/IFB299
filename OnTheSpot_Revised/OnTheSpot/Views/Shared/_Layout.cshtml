@@ -29,17 +29,16 @@
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
                     
                     
-                    if (User.IsInRole("Courier"))
-                    {
-                    <li>@Html.ActionLink("Deliveries", "Index", "Orders")</li>
-                    } else {
-                        
-                    <li>@Html.ActionLink("Orders", "Index", "Orders")</li>
+                    if (User.IsInRole("Courier")) {
+                        <li>@Html.ActionLink("Deliveries", "Index", "Orders")</li>
+                        <li>@Html.ActionLink("Vehicles", "Index", "Vehicles")</li>                    
+                    } else {   
+                        <li>@Html.ActionLink("Orders", "Index", "Orders")</li>
                     }
                     
-                    if (User.IsInRole("Admin"))
-                    {
-                    <li>@Html.ActionLink("Users", "Index", "Users")</li>
+                    if (User.IsInRole("Admin")) {
+                        <li>@Html.ActionLink("Users", "Index", "Users")</li>
+                        <li>@Html.ActionLink("Vehicles", "Index", "Vehicles")</li>                    
                     }
 
                     

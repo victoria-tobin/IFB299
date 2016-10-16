@@ -15,11 +15,14 @@ namespace OnTheSpot.DAL
         public DbSet<UserProfile> Users { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<Package> Packages { get; set; }
+        public DbSet<Vehicle> Vehicles { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
         }
+
+        
 
     }
 }
