@@ -44,9 +44,6 @@
         <div class="editor-field">
             @Html.RadioButtonFor(model => model.Priority, "Overnight") Overnight
         </div>
-        }
-
-
         <div class="editor-label">
             @Html.LabelFor(model => model.Status, "Status")
         </div>
@@ -62,9 +59,6 @@
         <div class="editor-field">
             @Html.RadioButtonFor(model => model.Status, "Delivered") Delivered
         </div>
-
-        @if (User.IsInRole("Admin")) {
-
         <div class="editor-label">
             @Html.LabelFor(model => model.Weight, "Weight")
         </div>
@@ -72,7 +66,6 @@
             @Html.EditorFor(model => model.Weight)
             @Html.ValidationMessageFor(model => model.Weight)
         </div>
-
         <div class="editor-label">
             @Html.LabelFor(model => model.Length, "Length")
         </div>
@@ -94,9 +87,6 @@
             @Html.EditorFor(model => model.Height)
             @Html.ValidationMessageFor(model => model.Height)
         </div>
-        }
-
-
         <div class="editor-label">
             @Html.LabelFor(model => model.Collected, "Collected")
         </div>
@@ -112,12 +102,35 @@
             @Html.EditorFor(model => model.Delivered)
             @Html.ValidationMessageFor(model => model.Delivered)
         </div>
-
         <p>
             <input type="submit" value="Save" />
         </p>
+            
+        }
+
+
+        @if (User.IsInRole("Courier"))
+        {
+            <p>
+                @Html.ActionLink("Collected", "Collected", new { id=Model.PackageID })
+            </p>
+            <p>
+                @Html.ActionLink("In Transit", "InTransit", new { id=Model.PackageID })
+            </p>
+            <p>
+                @Html.ActionLink("Delivered", "Delivered", new { id=Model.PackageID })
+            </p>
+            
+        }
+
+        
+
+        
+
+
     </fieldset>
 }
+
 
 <div>
     @Html.ActionLink("Back to List", "Index")

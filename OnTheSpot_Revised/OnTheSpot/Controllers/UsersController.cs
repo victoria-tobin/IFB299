@@ -61,13 +61,25 @@ namespace OnTheSpot.Controllers
             return View(userprofile);
         }
 
+
+        private IEnumerable<SelectListItem> GetRoles(string r)
+        {
+
+            List<SelectListItem> roles = new List<SelectListItem>();
+            roles.Add(new SelectListItem { Text = "Customer", Value = "Customer", Selected = (r == "Customer") });
+            roles.Add(new SelectListItem { Text = "Courier", Value = "Courier", Selected = (r == "Courier") });
+            roles.Add(new SelectListItem { Text = "Admin", Value = "Admin", Selected = (r == "Admin") });
+            return new SelectList(roles, "Value", "Text");
+        }
+
+
         //
         // GET: /Users/Edit/5
 
         public ActionResult Edit(int id = 0)
         {
             UserProfile userprofile = db.Users.Find(id);
-            //userprofile.UserRoles = GetRoles(userprofile.UserRole);
+            userprofile.UserRoles = GetRoles(userprofile.UserRole);
             if (userprofile == null)
             {
                 return HttpNotFound();
@@ -85,6 +97,16 @@ namespace OnTheSpot.Controllers
             if (ModelState.IsValid)
             {
                 db.Entry(userprofile).State = EntityState.Modified;
+
+                string u = userprofile.UserName;
+                string r = userprofile.UserRole;
+
+                if (!Roles.GetUsersInRole(r).Contains(u))
+                {
+                    Roles.RemoveUserFromRoles(u, Roles.GetRolesForUser(u));
+                    Roles.AddUserToRole(u, r);
+                }
+
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -112,6 +134,10 @@ namespace OnTheSpot.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             UserProfile userprofile = db.Users.Find(id);
+            if (Roles.GetRolesForUser(userprofile.UserName).Length != 0)
+            {
+                Roles.RemoveUserFromRoles(userprofile.UserName, Roles.GetRolesForUser(userprofile.UserName));
+            }
             db.Users.Remove(userprofile);
             db.SaveChanges();
             return RedirectToAction("Index");

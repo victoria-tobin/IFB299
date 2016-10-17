@@ -8,10 +8,12 @@
     @if (User.IsInRole("Admin")) {
     <li>@Html.ActionLink("All Orders", "Index", "Orders")</li>
     <li>@Html.ActionLink("Outstanding Orders", "Index", "Orders", new { outstanding = true }, null)</li>
+    <li>@Html.ActionLink("Packages", "Index", "Packages")</li>
     } else {
     <li>@Html.ActionLink("Orders", "Index", "Orders")</li>
+    <li>@Html.ActionLink("Packages", "Index", "Packages")</li>
     }
-        <li>@Html.ActionLink("Packages", "Index", "Packages")</li>
+
     </ul>
     
 </div>
@@ -37,6 +39,7 @@
 <br />
 <h3> Package Particulars </h3>
 
+
 <table>
     <tr>
         <th>
@@ -54,14 +57,23 @@
         <th>
             @Html.DisplayNameFor(model => model.Weight)
         </th>
+        <th>
+            @Html.DisplayName("Length")
+        </th>
+        <th>
+            @Html.DisplayName("Width")
+        </th>
+        <th>
+            @Html.DisplayName("Height")
+        </th>
+
         @if (User.IsInRole("Admin")) {
         <th>
             @Html.DisplayNameFor(model => model.AssignedCourier)
         </th>
-            <th>
-
-            </th>
         }
+
+    <th></th>
     </tr>
 
 @foreach (var item in Model) {
@@ -80,6 +92,15 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Weight)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Length)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Width)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Height)
         </td>
         @if (User.IsInRole("Admin")) {
         <td>
@@ -142,54 +163,4 @@
         </td>
     </tr>
 }
-</table>
-<h4> Couriers </h4>
-<table>
-    <tr>
-        <th>
-            @Html.DisplayName("Package ID")
-        </th>
-        <th>
-            @Html.DisplayName("Courier name")
-        </th>
-        <th>
-            @Html.DisplayName("Weight")
-        </th>
-        <th>
-            @Html.DisplayName("Length")
-        </th>
-        <th>
-            @Html.DisplayName("Width")
-        </th>
-        <th>
-            @Html.DisplayName("Height")
-        </th>
-    </tr>
-    @foreach (var item in Model)
-    {
-        <tr>
-            
-                <td>
-                    @Html.DisplayFor(modelItem => item.PackageID)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.AssignedCourier)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Weight)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Length)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Width)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Height)
-                </td>
-            
-            
-        </tr>
-    }
-
 </table>

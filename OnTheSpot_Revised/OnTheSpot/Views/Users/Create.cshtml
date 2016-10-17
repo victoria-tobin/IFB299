@@ -14,19 +14,19 @@
         <legend>UserProfile</legend>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.UserRole)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.UserRole)
-            @Html.ValidationMessageFor(model => model.UserRole)
-        </div>
-
-        <div class="editor-label">
             @Html.LabelFor(model => model.UserName)
         </div>
         <div class="editor-field">
             @Html.EditorFor(model => model.UserName)
             @Html.ValidationMessageFor(model => model.UserName)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(m=>m.UserRoles, "Role")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(m=>m.UserRole, Model.UserRoles)
+            @Html.ValidationMessageFor(model => model.UserRole)
         </div>
 
         <p>

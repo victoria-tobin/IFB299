@@ -27,12 +27,19 @@ namespace OnTheSpot.Controllers
 
             var packages = from p in db.Packages
                            select p;
-
-                                          
+                       
             if (User.IsInRole("Courier"))
             {
                 packages = from p in db.Packages.Where(p => p.AssignedCourier == WebSecurity.CurrentUserName)
                                select p;
+            }
+
+            if (User.IsInRole("Customer"))
+            {
+
+                packages = from p in db.Packages.Where(p => p.Order.Username == WebSecurity.CurrentUserName)
+                           select p;
+                           
             }
 
 
@@ -120,8 +127,71 @@ namespace OnTheSpot.Controllers
             return View(package);
         }
 
+        public ActionResult Collected(int id = 0)
+        {
+            Package package = db.Packages.Find(id);
+
+            package.Collected = DateTime.Now;
+            package.Status = Status.AtWarehouse;
+            db.Orders.Find(package.OrderID).Completed = false;
+
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult InTransit(int id = 0)
+        {
+            Package package = db.Packages.Find(id);
+
+            if (package.Collected == null)
+            {
+                package.Collected = DateTime.Now;
+            }
+            package.Status = Status.InTransit;
+            db.Orders.Find(package.OrderID).Completed = false;
+
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult Delivered(int id = 0)
+        {
+            Package package = db.Packages.Find(id);
+
+            if (package.Collected == null)
+            {
+                package.Collected = DateTime.Now;
+            }
+            
+            package.Status = Status.Delivered;
+            checkIfCompleted(id);
+
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
         //
         // GET: /Packages/Edit/5
+
+        private void checkIfCompleted(int id)
+        {
+            // set completed value in order to true if all packages have been delivered
+            Package package = db.Packages.Find(id);
+
+            var orderID = package.OrderID;
+            var sameOrder = db.Packages.Count(p => p.OrderID == package.OrderID);
+            if (sameOrder == 1)
+            {
+                db.Orders.Find(orderID).Completed = true;
+            }
+            else if (db.Packages.Count(p => p.OrderID == package.OrderID && p.Status == Status.Delivered) == (sameOrder - 1))
+            {
+                db.Orders.Find(orderID).Completed = true;
+            }
+
+
+            db.SaveChanges();
+
+        }
 
         public ActionResult Edit(int id = 0)
         {
@@ -148,18 +218,13 @@ namespace OnTheSpot.Controllers
             if (ModelState.IsValid)
             {
                 db.Entry(package).State = EntityState.Modified;
-                if(package.Status == Status.Delivered)
+                if (package.Status == Status.Delivered)
                 {
-                    var orderID = db.Packages.Find(package.OrderID).OrderID;
-                    var sameOrder = db.Packages.Count(p => p.OrderID == package.OrderID);
-                    if(sameOrder == 1)
-                    {
-                        db.Orders.Find(orderID).Completed = true;
-                    } 
-                    else if(db.Packages.Count(p => p.OrderID == package.OrderID && p.Status == Status.Delivered) == sameOrder)
-                    {
-                        db.Orders.Find(orderID).Completed = true;
-                    }
+                    checkIfCompleted(package.PackageID);
+                }
+                else
+                {
+                    db.Orders.Find(package.OrderID).Completed = false;
                 }
                 db.SaveChanges();
                 return RedirectToAction("Index");

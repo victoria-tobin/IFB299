@@ -9,18 +9,7 @@ using OnTheSpot.DAL;
 
 namespace OnTheSpot.Models
 {
-    /*
-    public class UsersContext : DbContext
-    {
-        public UsersContext()
-            : base("DatabaseModels")
-        {
-        }
 
-        public DbSet<UserProfile> UserProfiles { get; set; }
-    }
- 
-    */
 
     [Table("UserProfile")]
     public class UserProfile

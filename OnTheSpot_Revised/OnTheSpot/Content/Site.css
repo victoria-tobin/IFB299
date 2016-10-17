@@ -240,6 +240,25 @@ input[type=text], input[type=password], select
 	width: 300px;
 }
 
+aside {
+    float: right;
+    width: 25%;
+}
+
+    aside ul {
+        list-style: none;
+        padding: 0;
+    }
+
+        aside ul li {
+            background: url("../Images/bullet.png") no-repeat 0 50%;
+            padding: 2px 0 2px 20px;
+        }
+
+.label {
+    font-weight: 700;
+}
+
 /* Styles for validation helpers */
 .field-validation-error {
     color: #ff0000;

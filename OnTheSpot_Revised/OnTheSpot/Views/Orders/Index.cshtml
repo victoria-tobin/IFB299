@@ -4,18 +4,15 @@
 <div>
     <ul id ="m">
        
-        @if (User.IsInRole("Admin")||User.IsInRole("Courier"))
-        {
-            if(User.IsInRole("Admin"))
-            {
-                <li>@Html.ActionLink("All Orders", "Index", "Orders")</li>
-                <li>@Html.ActionLink("Outstanding Orders", "Index", new { outstanding = true })</li>
-            } else {
-             <li>@Html.ActionLink("Orders", "Index", "Orders")</li>   
-            }
-            <li>@Html.ActionLink("Packages", "Index", "Packages")</li>
+     @if (User.IsInRole("Admin")) {
+    <li>@Html.ActionLink("All Orders", "Index", "Orders")</li>
+    <li>@Html.ActionLink("Outstanding Orders", "Index", "Orders", new { outstanding = true }, null)</li>
+    <li>@Html.ActionLink("Packages", "Index", "Packages")</li>
+    } else {
+    <li>@Html.ActionLink("Orders", "Index", "Orders")</li>
+    <li>@Html.ActionLink("Packages", "Index", "Packages")</li>
+    }
 
-        }
         
     </ul>
 </div>
@@ -66,17 +63,18 @@
             new { sortOrder = ViewBag.DateSortParm, outstanding = ViewBag.IsOut, searchInt = ViewBag.Search })
 
         </th>
+        @if(User.IsInRole("Admin" )|| User.IsInRole( "Courier")) {
         <th>
             @Html.DisplayNameFor(model => model.Completed)
         </th>
+        
         <th></th>
-
+        }
     </tr>
     
     
         @foreach (var item in Model) {
             
-            if(User.IsInRole("Admin" )|| User.IsInRole( "Courier")) {
             <tr>
                 <td>
                     @Html.DisplayFor(modelItem => item.OrderID)
@@ -100,54 +98,20 @@
                     @Html.DisplayFor(modelItem => item.OrderSubmitted)
                 </td>
 
-
+                @if(User.IsInRole("Admin" )|| User.IsInRole( "Courier")) {
                 <td>
                     @Html.DisplayFor(modelItem => item.Completed)
                 </td>
-                @if (User.IsInRole("Admin")) {
+                if (User.IsInRole("Admin")) {
                 <td>
                     @Html.ActionLink("Edit", "Edit", new { id = item.OrderID }) |
                     @Html.ActionLink("Details", "Details", new { id=item.OrderID }) |
                     @Html.ActionLink("Delete", "Delete", new { id=item.OrderID })
                 </td>
                 }
+                }
             </tr>
     }
-    }
-    
-    
-        
-        @foreach (var item in Model)
-        {
-            if(item.UserId == WebSecurity.GetUserId(User.Identity.Name))
-            {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.OrderID)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Username)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.UserId)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Pickup)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.PickupAddress)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.DeliveryAddress)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.OrderSubmitted)
-                    </td>
-                    <td>
-                        @Html.ActionLink("Edit", "Edit", new { id = item.OrderID })
-                    </td>
-                </tr>
-            }
-        }
+ 
 
 </table>

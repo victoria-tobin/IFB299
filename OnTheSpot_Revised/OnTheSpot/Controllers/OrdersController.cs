@@ -34,17 +34,15 @@ namespace OnTheSpot.Controllers
             {
                 var packages = from p in db.Packages.Where(p => p.AssignedCourier == WebSecurity.CurrentUserName)
                                select p.Order;
-                /*
-                orders = from o in db.Orders.Where(o => o.OrderID )
-                         //from p in packs.Where(p => p.AssignedCourier == WebSecurity.CurrentUserName)
-
-                         select o;
-                */
 
                 orders = from p in packages
                          select p;
+            }
 
-
+            if (User.IsInRole("Customer"))
+            {
+                orders = from o in db.Orders.Where(o => o.Username == WebSecurity.CurrentUserName)
+                         select o;
             }
             
             if (outstanding != null)
