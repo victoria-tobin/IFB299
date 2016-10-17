@@ -20,7 +20,7 @@
             
             <ul id="navlist">
                 @if (Request.IsAuthenticated) {
-                <text>    
+                <text>   
 
                         Hello, @Html.ActionLink(User.Identity.Name, "Manage", "Account", routeValues: null, htmlAttributes: new { @class = "username", title = "Manage" })!    
                         
@@ -29,10 +29,15 @@
                             <a href="javascript:document.getElementById('logoutForm').submit()">Log off</a>
                         }
                 </text>
+                        
+                    /*<li>@Html.ActionLink("Index", "Home", null, new { title = "Home", @class = "homeButton" })</li>*/
+                    <li><a href="@Url.Action("Index", "Home")" title="Home" class="links"><img alt="Home" src="@Url.Content("~/Images/buttons/Home1PNG.png")"></a></li>
+                    <li><a href="@Url.Action("About", "Home")" title="About" class="links"><img alt="About" src="@Url.Content("~/Images/buttons/About1PNG.png")"></a></li>
+                    <li><a href="@Url.Action("Contact", "Home")" title="Contact" class="links"><img alt="Contact" src="@Url.Content("~/Images/buttons/Contact1PNG.png")"></a></li>
                     
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    /*<li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>*/
                     
                     
                     if (User.IsInRole("Courier")) {
@@ -49,11 +54,17 @@
 
                     
                 } else {
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    /*<li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
                     <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
                     <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>*/
+                    <li><a href="@Url.Action("Index", "Home")" title="Home" class="links"><img alt="Home" src="@Url.Content("~/Images/buttons/Home1PNG.png")"></a></li>
+                    <li><a href="@Url.Action("Register", "Account")" title="Register" class="links"><img alt="Register" src="@Url.Content("~/Images/buttons/Register1PNG.png")"></a></li>
+                    <li><a href="@Url.Action("Login", "Account")" title="Login" class="links"><img alt="Login" src="@Url.Content("~/Images/buttons/Login1PNG.png")"></a></li>
+                    <li><a href="@Url.Action("About", "Home")" title="About" class="links"><img alt="About" src="@Url.Content("~/Images/buttons/About1PNG.png")"></a></li>
+                    <li><a href="@Url.Action("Contact", "Home")" title="Contact" class="links"><img alt="Contact" src="@Url.Content("~/Images/buttons/Contact1PNG.png")"></a></li>
+                                        
                 }
             </ul>
             </div>
