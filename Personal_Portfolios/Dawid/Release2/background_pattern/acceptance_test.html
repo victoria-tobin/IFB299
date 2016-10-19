@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+body {
+    background-image: url("test5.png");
+    background-size: 100% 200px;
+    background-repeat: no-repeat;
+
+}
+    img {
+       /* Set rules to fill background */
+  padding-top: 200px;
+  min-height: 100%;
+  min-width: 1024px;
+	
+  /* Set up proportionate scaling */
+  width: 100%;
+  height: auto;
+	
+  /* Set up positioning */
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+@media screen and (max-width: 1024px) { /* Specific to this particular image */
+  img.bg {
+    left: 50%;
+    margin-left: -512px;   /* 50% */
+  }
+}
+</style>
+</head>
+<body>
+
+    
+<img src="test6.png" alt="bg2" width="2560" height="1440">
+    
+</body>
+</html>
