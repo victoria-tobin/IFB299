@@ -11,54 +11,47 @@
     <body>
         <header>
             <div id="header">
-            <!--<h1>----OnTheSpot----</h1>-->
             <div class="float-left">
                 <p class="site-title">
                     <a runat="server" href="~/"><img src="~/Images/buttons/OnTheSpotLogoPNG2.png" alt="" /></a>
                 </p>
+            
+
+            <div class="topright">
+                @if (Request.IsAuthenticated) {
+                    <text>
+                        Hello, @Html.ActionLink(User.Identity.Name, "Manage", "Account", routeValues: null, htmlAttributes: new { @class = "username", title = "Manage" })!
+                        @using (Html.BeginForm("Logoff", "Account", FormMethod.Post, new { id = "logoutForm" })) {
+                            @Html.AntiForgeryToken()
+                            <a href="javascript:document.getElementById('logoutForm').submit()">Log off</a>
+                        }
+                    </text>
+                }
+            </div>
             </div>
             
             <ul id="navlist">
                 @if (Request.IsAuthenticated) {
-                <text>   
-
-                        Hello, @Html.ActionLink(User.Identity.Name, "Manage", "Account", routeValues: null, htmlAttributes: new { @class = "username", title = "Manage" })!    
                         
-                        @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" })) {
-                            @Html.AntiForgeryToken()
-                            <a href="javascript:document.getElementById('logoutForm').submit()">Log off</a>
-                        }
-                </text>
-                        
-                    /*<li>@Html.ActionLink("Index", "Home", null, new { title = "Home", @class = "homeButton" })</li>*/
                     <li><a href="@Url.Action("Index", "Home")" title="Home" class="links"><img alt="Home" src="@Url.Content("~/Images/buttons/Home1PNG.png")"></a></li>
                     <li><a href="@Url.Action("About", "Home")" title="About" class="links"><img alt="About" src="@Url.Content("~/Images/buttons/About1PNG.png")"></a></li>
                     <li><a href="@Url.Action("Contact", "Home")" title="Contact" class="links"><img alt="Contact" src="@Url.Content("~/Images/buttons/Contact1PNG.png")"></a></li>
                     
-                    /*<li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>*/
-                    
                     
                     if (User.IsInRole("Courier")) {
-                        <li>@Html.ActionLink("Deliveries", "Index", "Orders")</li>
-                        <li>@Html.ActionLink("Vehicles", "Index", "Vehicles")</li>                    
+                        <li><a href="@Url.Action("Index", "Orders")" title="Deliveries" class="links"><img alt="Deliveries" src="@Url.Content("~/Images/buttons/Deliveries1PNG.png")"></a></li>/*CHANGE IMAGE*/
+                        <li><a href="@Url.Action("Index", "Vehicles")" title="Vehicles" class="links"><img alt="Vehicles" src="@Url.Content("~/Images/buttons/Vehicles1PNG.png")"></a></li>/*CHANGE IMAGE*/                                                                                                                                                                   
                     } else {   
-                        <li>@Html.ActionLink("Orders", "Index", "Orders")</li>
+                        <li><a href="@Url.Action("Index", "Orders")" title="Deliveries" class="links"><img alt="Deliveries" src="@Url.Content("~/Images/buttons/Deliveries1PNG.png")"></a></li>/*CHANGE IMAGE*/
                     }
                     
                     if (User.IsInRole("Admin")) {
-                        <li>@Html.ActionLink("Users", "Index", "Users")</li>
-                        <li>@Html.ActionLink("Vehicles", "Index", "Vehicles")</li>                    
+                        <li><a href="@Url.Action("Index", "Users")" title="Users" class="links"><img alt="Users" src="@Url.Content("~/Images/buttons/Users1PNG.png")"></a></li>/*CHANGE IMAGE*/  
+                        <li><a href="@Url.Action("Index", "Vehicles")" title="Vehicles" class="links"><img alt="Vehicles" src="@Url.Content("~/Images/buttons/Vehicles1PNG.png")"></a></li>/*CHANGE IMAGE*/                   
                     }
 
                     
                 } else {
-                    /*<li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
-                    <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>*/
                     <li><a href="@Url.Action("Index", "Home")" title="Home" class="links"><img alt="Home" src="@Url.Content("~/Images/buttons/Home1PNG.png")"></a></li>
                     <li><a href="@Url.Action("Register", "Account")" title="Register" class="links"><img alt="Register" src="@Url.Content("~/Images/buttons/Register1PNG.png")"></a></li>
                     <li><a href="@Url.Action("Login", "Account")" title="Login" class="links"><img alt="Login" src="@Url.Content("~/Images/buttons/Login1PNG.png")"></a></li>
@@ -78,7 +71,7 @@
         <footer>
             <div class="content-wrapper">
                 <div class="float-left">
-                    <p>&copy; @DateTime.Now.Year - OnTheSpot Website</p>
+                   <p>&copy; @DateTime.Now.Year - OnTheSpot Website</p> 
                 </div>
             </div>
         </footer>
@@ -87,6 +80,3 @@
         @RenderSection("scripts", required: false)
     </body>
 </html>
-
-<!-- below command was showing the Home image and linking to home page. For some reason it's not working now -->
-<!-- <li><a href="@Url.Action("Index", "Home")" title="Home" class="links"><img alt="Home" src="@Url.Content("~/Images/buttons/Home1PNG.png")"></a></li> -->
