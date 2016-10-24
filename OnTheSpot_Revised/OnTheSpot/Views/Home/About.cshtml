@@ -2,12 +2,15 @@
     ViewBag.Title = "About us";
 }
 
-<hgroup class="title">
-    <h1>@ViewBag.Title.</h1>
-    <h2>@ViewBag.Message</h2>
-</hgroup>
 
-<article>
+
+<div class="bodytext">
+
+    <hgroup class="title">
+        <h1>@ViewBag.Title.</h1>
+        <h2>@ViewBag.Message</h2>
+    </hgroup>
+
     <p>
         With more than 15 years in the international package delivery company, Express World Wide I know how important 
         customer satisfaction and interaction is with a delivery of a package to ensure you are satisfied with the 
@@ -33,4 +36,4 @@
         Have any more queries? There are multiple ways to @Html.ActionLink("contact us", "Contact", "Home") <br /><br />
     </p>
 
-</article>
+</div>

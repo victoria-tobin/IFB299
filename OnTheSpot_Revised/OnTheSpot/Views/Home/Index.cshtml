@@ -2,29 +2,56 @@
     ViewBag.Title = "HOMEPAGE";
 }
 
-<div id="main-content">
+<div class="bodytext">
 
     
     <div class="motto">
-        <h1>This is the motto box.. put something here...Delivering Your World!</h1>
+        <h1>Welcome to On The Spot Delivery Service. Together we can deliver your world.</h1>
         <br />
     </div>
 
     <div class="headlines">
         <h1>HEADLINES</h1>
         <ul type=square>
-            <li>each of these li tags is for a new bullet point <br /></li>
-            <li>NEWS 1 <br /></li>
-            <li>NEWS 2 <br /></li>
-            <li>NEWS 3 <br /></li>
-            <li>NEWS 4 <br /></li>
-            <li>CATS 5 <br /></li>
+            <li><b>Christmas Cutoff!</b><br />Wanting parcels delivered before Christmas? Place your delivery requests by the 18th December to ensure delivery before the 25th<br /><br /></li>
+            <li><b>Christmas Shutdown!</b><br />We will be giving our employees a well earned break over the Christmas period, and will be closed from the 25th December - 1st January.<br /><br /></li>
+            <li><b>Delivery Discount!</b><br />To celebrate the launch of our new site, we are offering a 50% disount on all delivery services for a limited time.<br />
+                To receive the discount, simply place an order before the 25th November and we'll automatically discount your fees.<br /><br />
+            </li>
+            <li><b>New staff!</b><br />With the increase in business, we have added anouther courier driver to our employ. Welcome Archer Lug!<br /><br /></li>
+            <li><b>New site is live!</b><br />We have moved to an online ordering system, which will increase our efficieny by 30%! Try placing an order today<br /><br /></li>
         </ul>
     </div>
 
-    <div class="dnm">
-        <h1>Our terrible deep and meaningful image so far. Please find something better!</h1>
-        <img src="../../Images/homepageImage.jpg" alt="Deep and Meaningful Homepage Image" />
-    </div>
-
 </div>
+
+    <div class="csslider">
+        <input type="radio" name="slides" id="slides_1" checked />
+        <input type="radio" name="slides" id="slides_2" />
+        <input type="radio" name="slides" id="slides_3" />
+        <input type="radio" name="slides" id="slides_4" />
+        <input type="radio" name="slides" id="slides_5" />
+        <ul>
+            <li><img src="../../Images/slider/slide1.png"</li>
+            <li><img src="../../Images/slider/slide2.png"</li>
+            <li><img src="../../Images/slider/slide3.png"</li>
+            <li><img src="../../Images/slider/slide4.png"</li>
+            <li><img src="../../Images/slider/slide5.png"</li>
+        </ul>
+        <div class="arrows">
+            <label for="slides_1"></label>
+            <label for="slides_2"></label>
+            <label for="slides_3"></label>
+            <label for="slides_4"></label>
+            <label for="slides_5"></label>
+        </div>
+        <div class="navigation">
+            <div>
+                <label for="slides_1"></label>
+                <label for="slides_2"></label>
+                <label for="slides_3"></label>
+                <label for="slides_4"></label>
+                <label for="slides_5"></label>
+            </div>
+        </div>
+    </div>

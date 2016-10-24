@@ -4,43 +4,45 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<div class="bodytext">
+    <h2>Details</h2>
 
-<fieldset>
-    <legend>Order</legend>
+    <fieldset>
+        <legend>Order</legend>
 
-        <table>
+            <table>
 
-        <tr>
-            <td>@Html.LabelFor(model => model.OrderID)</td>
-            <td>@Html.DisplayFor(model => model.OrderID)</td>
-        </tr>
-        <tr>
-            <td>@Html.LabelFor(model => model.Username)</td>
-            <td>@Html.DisplayFor(model => model.Username)</td>
-        </tr>
-        <tr>
-            <td>@Html.LabelFor(model => model.OrderSubmitted)</td>
-            <td>@Html.DisplayFor(model => model.OrderSubmitted)</td>
-        </tr>
+            <tr>
+                <td>@Html.LabelFor(model => model.OrderID)</td>
+                <td>@Html.DisplayFor(model => model.OrderID)</td>
+            </tr>
+            <tr>
+                <td>@Html.LabelFor(model => model.Username)</td>
+                <td>@Html.DisplayFor(model => model.Username)</td>
+            </tr>
+            <tr>
+                <td>@Html.LabelFor(model => model.OrderSubmitted)</td>
+                <td>@Html.DisplayFor(model => model.OrderSubmitted)</td>
+            </tr>
 
-        <tr>
-            <td>@Html.LabelFor(model => model.PickupAddress)</td>
-            <td>@Html.DisplayFor(model => model.PickupAddress)</td>
-        </tr>
-        <tr>
-            <td>@Html.LabelFor(model => model.DeliveryAddress)</td>
-            <td>@Html.DisplayFor(model => model.DeliveryAddress)</td>
-        </tr>
-        <tr>
-            <td>@Html.LabelFor(model => model.Pickup)</td>
-            <td>@Html.DisplayFor(model => model.Pickup)</td>
-        </tr>
+            <tr>
+                <td>@Html.LabelFor(model => model.PickupAddress)</td>
+                <td>@Html.DisplayFor(model => model.PickupAddress)</td>
+            </tr>
+            <tr>
+                <td>@Html.LabelFor(model => model.DeliveryAddress)</td>
+                <td>@Html.DisplayFor(model => model.DeliveryAddress)</td>
+            </tr>
+            <tr>
+                <td>@Html.LabelFor(model => model.Pickup)</td>
+                <td>@Html.DisplayFor(model => model.Pickup)</td>
+            </tr>
 
-    </table>
+        </table>
    
-</fieldset>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id=Model.OrderID }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+    </fieldset>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id=Model.OrderID }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</div>

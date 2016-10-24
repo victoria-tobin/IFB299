@@ -4,39 +4,41 @@
     ViewBag.Title = "Create";
 }
 
-<h2>Create</h2>
+<div class="bodytext">
+    <h2>Create</h2>
 
-@using (Html.BeginForm()) {
-    @Html.AntiForgeryToken()
-    @Html.ValidationSummary(true)
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
 
-    <fieldset>
-        <legend>UserProfile</legend>
+        <fieldset>
+            <legend>UserProfile</legend>
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.UserName)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.UserName)
-            @Html.ValidationMessageFor(model => model.UserName)
-        </div>
+            <div class="editor-label">
+                @Html.LabelFor(model => model.UserName)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.UserName)
+                @Html.ValidationMessageFor(model => model.UserName)
+            </div>
 
-        <div class="editor-label">
-            @Html.LabelFor(m=>m.UserRoles, "Role")
-        </div>
-        <div class="editor-field">
-            @Html.DropDownListFor(m=>m.UserRole, Model.UserRoles)
-            @Html.ValidationMessageFor(model => model.UserRole)
-        </div>
+            <div class="editor-label">
+                @Html.LabelFor(m=>m.UserRoles, "Role")
+            </div>
+            <div class="editor-field">
+                @Html.DropDownListFor(m=>m.UserRole, Model.UserRoles)
+                @Html.ValidationMessageFor(model => model.UserRole)
+            </div>
 
-        <p>
-            <input type="submit" value="Create" />
-        </p>
-    </fieldset>
-}
+            <p>
+                <input type="submit" value="Create" />
+            </p>
+        </fieldset>
+    }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>
 </div>
 
 @section Scripts {

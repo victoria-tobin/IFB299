@@ -28,5 +28,12 @@ namespace OnTheSpot.Controllers
 
             return View();
         }
+
+        public ActionResult Howto()
+        {
+            ViewBag.Message = "Ordering is simple with us! Just follow these steps!";
+
+            return View();
+        }
     }
 }
