@@ -187,7 +187,8 @@ ul#navlist li
 ul#navlist li a
 {
 	border-left: 0px solid #373737;
-	padding: 10px;
+	/*padding: 10px;*/
+    padding: 0 1px;
 	margin-top: -70px;
 	color: #373737;
 	text-decoration: none;
