@@ -55,15 +55,15 @@
                     
                     
                     if (User.IsInRole("Courier")) {
-                        <li><a href="@Url.Action("Index", "Orders")" title="Deliveries" class="links"><img alt="Deliveries" src="@Url.Content("~/Images/buttons/Delivery1PNG.png")"></a></li>/*CHANGE IMAGE*/
-                        <li><a href="@Url.Action("Index", "Vehicles")" title="Vehicles" class="links"><img alt="Vehicles" src="@Url.Content("~/Images/buttons/Vehicles1PNG.png")"></a></li>/*CHANGE IMAGE*/                                                                                                                                                                   
+                        <li><a href="@Url.Action("Index", "Orders")" title="Deliveries" class="links"><img alt="Deliveries" src="@Url.Content("~/Images/buttons/Delivery1PNG.png")"></a></li>
+                        <li><a href="@Url.Action("Index", "Vehicles")" title="Vehicles" class="links"><img alt="Vehicles" src="@Url.Content("~/Images/buttons/Vehicles1PNG.png")"></a></li>                                                                                                                                                                  
                     } else {   
-                        <li><a href="@Url.Action("Index", "Orders")" title="Deliveries" class="links"><img alt="Deliveries" src="@Url.Content("~/Images/buttons/Delivery1PNG.png")"></a></li>/*CHANGE IMAGE*/
+                        <li><a href="@Url.Action("Index", "Orders")" title="Deliveries" class="links"><img alt="Deliveries" src="@Url.Content("~/Images/buttons/Delivery1PNG.png")"></a></li>
                     }
                     
                     if (User.IsInRole("Admin")) {
-                        <li><a href="@Url.Action("Index", "Users")" title="Users" class="links"><img alt="Users" src="@Url.Content("~/Images/buttons/Users1PNG.png")"></a></li>/*CHANGE IMAGE*/  
-                        <li><a href="@Url.Action("Index", "Vehicles")" title="Vehicles" class="links"><img alt="Vehicles" src="@Url.Content("~/Images/buttons/Vehicles1PNG.png")"></a></li>/*CHANGE IMAGE*/                   
+                        <li><a href="@Url.Action("Index", "Users")" title="Users" class="links"><img alt="Users" src="@Url.Content("~/Images/buttons/Users1PNG.png")"></a></li>
+                        <li><a href="@Url.Action("Index", "Vehicles")" title="Vehicles" class="links"><img alt="Vehicles" src="@Url.Content("~/Images/buttons/Vehicles1PNG.png")"></a></li>                  
                     }
 
                     

@@ -75,6 +75,7 @@ body
 {
 	float: left;
 	width: 100%;
+	/*border-bottom: 2px solid #373737;*/
 	margin-bottom: 20px;
     position: relative;
     padding-top: 185px;
@@ -181,18 +182,17 @@ ul#navlist
 
 ul#navlist li
 {
-	display: inline-block;
+	display: inline;
 }
 
 ul#navlist li a
 {
 	border-left: 0px solid #373737;
 	padding: 10px;
-	margin-top: -70px;
+	margin-top: -60px;
 	color: #373737;
 	text-decoration: none;
 	float: left; 
-    position: relative;
 }
 
 ul#navlist li:first-child a
