@@ -87,6 +87,7 @@ D:\1_MY_FILES\Uni\IFB299\IFB299\OnTheSpot_Revised\OnTheSpot\bin\DotNetOpenAuth.O
 D:\1_MY_FILES\Uni\IFB299\IFB299\OnTheSpot_Revised\OnTheSpot\bin\DotNetOpenAuth.OpenId.dll
 D:\1_MY_FILES\Uni\IFB299\IFB299\OnTheSpot_Revised\OnTheSpot\bin\DotNetOpenAuth.OpenId.RelyingParty.dll
 D:\1_MY_FILES\Uni\IFB299\IFB299\OnTheSpot_Revised\OnTheSpot\bin\EntityFramework.dll
+D:\1_MY_FILES\Uni\IFB299\IFB299\OnTheSpot_Revised\OnTheSpot\bin\EntityFramework.SqlServer.dll
 D:\1_MY_FILES\Uni\IFB299\IFB299\OnTheSpot_Revised\OnTheSpot\bin\Microsoft.Data.Edm.dll
 D:\1_MY_FILES\Uni\IFB299\IFB299\OnTheSpot_Revised\OnTheSpot\bin\Microsoft.Data.OData.dll
 D:\1_MY_FILES\Uni\IFB299\IFB299\OnTheSpot_Revised\OnTheSpot\bin\Microsoft.Web.Infrastructure.dll
@@ -106,6 +107,7 @@ D:\1_MY_FILES\Uni\IFB299\IFB299\OnTheSpot_Revised\OnTheSpot\bin\WebGrease.dll
 D:\1_MY_FILES\Uni\IFB299\IFB299\OnTheSpot_Revised\OnTheSpot\bin\WebMatrix.Data.dll
 D:\1_MY_FILES\Uni\IFB299\IFB299\OnTheSpot_Revised\OnTheSpot\bin\WebMatrix.WebData.dll
 D:\1_MY_FILES\Uni\IFB299\IFB299\OnTheSpot_Revised\OnTheSpot\bin\EntityFramework.xml
+D:\1_MY_FILES\Uni\IFB299\IFB299\OnTheSpot_Revised\OnTheSpot\bin\EntityFramework.SqlServer.xml
 D:\1_MY_FILES\Uni\IFB299\IFB299\OnTheSpot_Revised\OnTheSpot\bin\Newtonsoft.Json.xml
 D:\1_MY_FILES\Uni\IFB299\IFB299\OnTheSpot_Revised\OnTheSpot\bin\System.Web.Helpers.xml
 D:\1_MY_FILES\Uni\IFB299\IFB299\OnTheSpot_Revised\OnTheSpot\bin\System.Web.Mvc.xml
@@ -156,9 +158,3 @@ D:\1_MY_FILES\Uni\IFB299\IFB299\OnTheSpot_Revised\OnTheSpot\bin\zh-Hant\System.S
 D:\1_MY_FILES\Uni\IFB299\IFB299\OnTheSpot_Revised\OnTheSpot\obj\Release\OnTheSpot.csprojResolveAssemblyReference.cache
 D:\1_MY_FILES\Uni\IFB299\IFB299\OnTheSpot_Revised\OnTheSpot\obj\Release\OnTheSpot.dll
 D:\1_MY_FILES\Uni\IFB299\IFB299\OnTheSpot_Revised\OnTheSpot\obj\Release\OnTheSpot.pdb
-D:\1_MY_FILES\Uni\IFB299\IFB299\OnTheSpot_Revised\OnTheSpot\bin\System.Web.Http.WebHost.dll
-D:\1_MY_FILES\Uni\IFB299\IFB299\OnTheSpot_Revised\OnTheSpot\bin\System.Web.Http.WebHost.xml
-D:\1_MY_FILES\Uni\IFB299\IFB299\OnTheSpot_Revised\OnTheSpot\bin\System.Web.Http.dll
-D:\1_MY_FILES\Uni\IFB299\IFB299\OnTheSpot_Revised\OnTheSpot\bin\System.Web.Http.xml
-D:\1_MY_FILES\Uni\IFB299\IFB299\OnTheSpot_Revised\OnTheSpot\bin\System.Net.Http.Formatting.dll
-D:\1_MY_FILES\Uni\IFB299\IFB299\OnTheSpot_Revised\OnTheSpot\bin\System.Net.Http.Formatting.xml

@@ -35,7 +35,7 @@
             <div class="topright">
                 @if (Request.IsAuthenticated) {
                     <text>
-                        Hello, @Html.ActionLink(User.Identity.Name, "Manage", "Account", routeValues: null, htmlAttributes: new { @class = "username", title = "Manage" })!
+                        Hello, @Html.ActionLink(User.Identity.Name, "Manage", "Users", routeValues: null, htmlAttributes: new { @class = "username", title = "Manage" })!
                         @using (Html.BeginForm("Logoff", "Account", FormMethod.Post, new { id = "logoutForm" })) {
                             @Html.AntiForgeryToken()
                             <a href="javascript:document.getElementById('logoutForm').submit()">Log off</a>
@@ -51,7 +51,7 @@
                     <li><a href="@Url.Action("Index", "Home")" title="Home" class="links"><img alt="Home" src="@Url.Content("~/Images/Home1PNG.png")"></a></li>
                     <li><a href="@Url.Action("About", "Home")" title="About" class="links"><img alt="About" src="@Url.Content("~/Images/About1PNG.png")"></a></li>
                     <li><a href="@Url.Action("Contact", "Home")" title="Contact" class="links"><img alt="Contact" src="@Url.Content("~/Images/Contact1PNG.png")"></a></li>
-                    <li><a href="@Url.Action("Howto", "Home")" title="Howto" class="links"><img alt="How To" src="@Url.Content("~/Images/Howto1PNG.png")"</a></li>
+                    <li><a href="@Url.Action("Howto", "Home")" title="Howto" class="links"><img alt="How To" src="@Url.Content("~/Images/Howto1PNG.png")" /></a></li>
                     
                     
                     if (User.IsInRole("Courier")) {
@@ -71,7 +71,7 @@
                     <li><a href="@Url.Action("Index", "Home")" title="Home" class="links"><img alt="Home" src="@Url.Content("~/Images/Home1PNG.png")"></a></li>
                     <li><a href="@Url.Action("Register", "Account")" title="Register" class="links"><img alt="Register" src="@Url.Content("~/Images/Register1PNG.png")"></a></li>
                     <li><a href="@Url.Action("Login", "Account")" title="Login" class="links"><img alt="Login" src="@Url.Content("~/Images/Login1PNG.png")"></a></li>
-                    <li><a href="@Url.Action("Howto", "Home")" title="Howto" class="links"><img alt="How To" src="@Url.Content("~/Images/Howto1PNG.png")"</a></li>
+                    <li><a href="@Url.Action("Howto", "Home")" title="Howto" class="links"><img alt="How To" src="@Url.Content("~/Images/Howto1PNG.png")" /></a></li>
                     <li><a href="@Url.Action("About", "Home")" title="About" class="links"><img alt="About" src="@Url.Content("~/Images/About1PNG.png")"></a></li>
                     <li><a href="@Url.Action("Contact", "Home")" title="Contact" class="links"><img alt="Contact" src="@Url.Content("~/Images/Contact1PNG.png")"></a></li>
                                         

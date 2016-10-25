@@ -21,18 +21,31 @@ namespace OnTheSpot.Models
 
         [Required(ErrorMessage = "Please provide username", AllowEmptyStrings = false)]
         public string UserName { get; set; }
+
+        public string FirstName { get; set; }
+        public string MiddleName { get; set; }
+        public string LastName { get; set; }
+
+        public string Email { get; set; }
+        public string Phonenumber { get; set; }
+
+        public string Country { get; set; }
+        public string State { get; set; }
+        public string City { get; set; }
+        public string Postcode { get; set; }
+        public string StreetAddress { get; set; }
+
         public IEnumerable<System.Web.Mvc.SelectListItem> UserRoles { get; set; }
         //public IEnumerable<System.Web.Mvc.SelectListItem> Couriers { get; set; }
     }
 
-    public class LocalPasswordModel
+    public class SecurityModel
     {
         [Required]
         [DataType(DataType.Password)]
         [Display(Name = "Current password")]
         public string OldPassword { get; set; }
 
-        [Required]
         [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
         [DataType(DataType.Password)]
         [Display(Name = "New password")]
@@ -107,6 +120,12 @@ namespace OnTheSpot.Models
         }
 
         public string UserRole { get; set; }
+    }
+
+    public class BigViewModel
+    {
+        public UserProfile UserProfile { get; set; }
+        public SecurityModel SecurityModel { get; set; }
     }
 
 }
