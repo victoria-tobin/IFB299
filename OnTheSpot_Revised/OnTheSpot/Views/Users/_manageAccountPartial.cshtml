@@ -6,12 +6,16 @@
     @Html.ValidationSummary()
 
     <fieldset>
-        <b>Account details (Requires password confirmation)</b>
+        <legend>Account details (Requires password confirmation)</legend>
 
         @Html.HiddenFor(model => model.UserProfile.UserName)
         @Html.HiddenFor(model => model.UserProfile.UserID)
+        @Html.HiddenFor(model => model.UserProfile.UserRole)
+        @Html.HiddenFor(model => model.UserProfile.FirstName)
+        @Html.HiddenFor(model => model.UserProfile.MiddleName)
+        @Html.HiddenFor(model => model.UserProfile.LastName)
 
-        <b>Contact Information</b>
+        <legend>Contact Information</legend>
         <div class="editor-label">
             Contact Phone Number:
         </div>
@@ -27,7 +31,7 @@
             @Html.ValidationMessageFor(model => model.UserProfile.Email)
         </div>
 
-        <b>Address</b>
+        <legend>Address</legend>
         <div class="editor-label">
             Country:
         </div>
@@ -64,7 +68,7 @@
             @Html.ValidationMessageFor(model => model.UserProfile.StreetAddress)
         </div>
 
-        <b>Password (Note: Must complete all three fields)</b>
+        <legend>Password (Note: Must complete all three fields)</legend>
         <div>
             <div class="editor-label">
                 @Html.LabelFor(model => model.SecurityModel.OldPassword)

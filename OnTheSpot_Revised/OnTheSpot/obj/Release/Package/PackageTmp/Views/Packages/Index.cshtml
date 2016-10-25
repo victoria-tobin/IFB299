@@ -55,18 +55,27 @@
                 @Html.DisplayNameFor(model => model.Weight)
             </th>
             <th>
-                @Html.DisplayName("Length")
+                @Html.DisplayNameFor(model => model.Length)
             </th>
             <th>
-                @Html.DisplayName("Width")
+                @Html.DisplayNameFor(model => model.Width)
             </th>
             <th>
-                @Html.DisplayName("Height")
+                @Html.DisplayNameFor(model => model.Height)
             </th>
 
             @if (User.IsInRole("Admin")) {
             <th>
                 @Html.DisplayNameFor(model => model.AssignedCourier)
+            </th>
+            }
+            @if (User.IsInRole("Customer") || User.IsInRole("Courier"))
+            {
+            <th>
+                @Html.DisplayNameFor(model => model.Collected)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Delivered)
             </th>
             }
 
@@ -112,6 +121,16 @@
                     @Html.ActionLink("Delete", "Delete", new { id=item.PackageID })
                 </td>
             }
+            
+            @if (User.IsInRole("Customer") || User.IsInRole("Courier"))
+            {
+            <td>
+                @Html.DisplayFor(modelItem => item.Collected)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Delivered)
+            </td>
+            }
             @if(User.IsInRole("Courier"))
             {
                 <td>
@@ -122,9 +141,9 @@
         
         </tr>
     }
-
+       
     </table>
-
+@if(User.IsInRole("Admin")) {
     <br />
     <h3> Dates </h3>
 
@@ -161,4 +180,5 @@
         </tr>
     }
     </table>
+       }
 </div>

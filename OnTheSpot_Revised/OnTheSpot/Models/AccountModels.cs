@@ -109,6 +109,8 @@ namespace OnTheSpot.Models
         public string City { get; set; }
         public string Postcode { get; set; }
         public string StreetAddress { get; set; }
+
+        //Future rollouts
         public string Jobtitle { get; set; }
         public Nullable<int> Salary { get; set; }
         public Nullable<int> SumOfWeeklyWorkHours { get; set; }
