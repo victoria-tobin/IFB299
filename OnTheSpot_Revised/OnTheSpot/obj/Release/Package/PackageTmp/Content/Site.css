@@ -240,6 +240,7 @@ h3
 a:link, a:visited
 {
 	color: #F6855E;
+    text-shadow: 0 0 4px black, 0 0 4px black;
 	text-decoration: none;
 	font-weight: bold;
 }
