@@ -84,7 +84,18 @@ namespace OnTheSpot.Controllers
                 // Attempt to register the user
                 try
                 {
-                    WebSecurity.CreateUserAndAccount(model.UserName, model.Password, propertyValues: new { model.UserRole });
+                    WebSecurity.CreateUserAndAccount(model.UserName, model.Password, propertyValues: new { model.UserRole, 
+                                                                                                           model.FirstName, 
+                                                                                                           model.MiddleName,
+                                                                                                           model.LastName,
+                                                                                                           model.Email,
+                                                                                                           model.Phonenumber,
+                                                                                                           model.Country,
+                                                                                                           model.State,
+                                                                                                           model.City,
+                                                                                                           model.Postcode,
+                                                                                                           model.StreetAddress,
+                    });
                     WebSecurity.Login(model.UserName, model.Password);
 
                     Roles.AddUserToRole(model.UserName, "Customer");

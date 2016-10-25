@@ -151,6 +151,9 @@ namespace OnTheSpot.Controllers
 
         public ActionResult Manage(ManageMessageId? message)
         {
+            BigViewModel model = new BigViewModel();
+            model.UserProfile = db.Users.Find(WebSecurity.GetUserId(User.Identity.Name));
+
             ViewBag.StatusMessage =
                 message == ManageMessageId.ChangePasswordSuccess ? "Your password has been changed."
                 : message == ManageMessageId.SetPasswordSuccess ? "Your password has been set."
@@ -158,7 +161,8 @@ namespace OnTheSpot.Controllers
                 : "";
             ViewBag.HasLocalPassword = OAuthWebSecurity.HasLocalAccount(WebSecurity.GetUserId(User.Identity.Name));
             ViewBag.ReturnUrl = Url.Action("Manage");
-            return View();
+
+            return View(model);
         }
 
         //
@@ -169,6 +173,14 @@ namespace OnTheSpot.Controllers
         public ActionResult Manage(BigViewModel model)
         {
             bool hasLocalAccount = OAuthWebSecurity.HasLocalAccount(WebSecurity.GetUserId(User.Identity.Name));
+
+            int id = model.UserProfile.UserID;
+            //UserProfile user = model.UserProfile; //= db.Users.Find(WebSecurity.GetUserId(User.Identity.Name));
+
+            //UserProfile user = db.Users.Find(WebSecurity.GetUserId(User.Identity.Name)); //db.Users.Find(WebSecurity.GetUserId(User.Identity.Name));  
+
+            //UserProfile user = db.Users.Find(WebSecurity.GetUserId(User.Identity.Name));
+
             ViewBag.HasLocalPassword = hasLocalAccount;
             ViewBag.ReturnUrl = Url.Action("Manage");
             if (hasLocalAccount)
@@ -188,6 +200,10 @@ namespace OnTheSpot.Controllers
 
                     if (changePasswordSucceeded)
                     {
+                        
+                        db.Entry(model.UserProfile).State = EntityState.Modified;
+                        db.SaveChanges();
+
                         return RedirectToAction("Manage", new { Message = ManageMessageId.ChangePasswordSuccess });
                     }
                     else

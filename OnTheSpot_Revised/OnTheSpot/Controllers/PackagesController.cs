@@ -162,7 +162,8 @@ namespace OnTheSpot.Controllers
             {
                 package.Collected = DateTime.Now;
             }
-            
+
+            package.Delivered = DateTime.Now;
             package.Status = Status.Delivered;
             checkIfCompleted(id);
 

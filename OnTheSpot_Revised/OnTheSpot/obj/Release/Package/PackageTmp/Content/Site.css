@@ -25,8 +25,7 @@ body
 	/*font-family: Arial, Helvetica, sans-serif;
 	font-size: 14px;*/
     background-color: #fff;
-    background-image: url('http://ifb299-001-site1.htempurl.com:80/Images/body.png');
-    /*background-image: url('~/Images/body.png');*/
+    background-image: url('~/Images/body.png');
     background-repeat: no-repeat;
     background-size: 100% 1000%;
 }
@@ -240,7 +239,6 @@ h3
 a:link, a:visited
 {
 	color: #F6855E;
-    text-shadow: 0 0 4px black, 0 0 4px black;
 	text-decoration: none;
 	font-weight: bold;
 }
