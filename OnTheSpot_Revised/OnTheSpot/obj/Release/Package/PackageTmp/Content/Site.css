@@ -5,25 +5,102 @@
 	border: none;
 }
 
-body
+/*body
 {
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 14px;
-	background-color: #FBF9EF;
+    background-color: #fff;
+    background-image: url('~/Images/body.png');
+    background-repeat: repeat;
 	padding: 0px 6%;
 }
 
 #container
 {
 	float: left;
+}*/
+
+body 
+{
+	/*font-family: Arial, Helvetica, sans-serif;
+	font-size: 14px;*/
+    background-color: #fff;
+    background-image: url('~/Images/body.png');
+    background-repeat: no-repeat;
+    background-size: 100% 1000%;
 }
 
-#header
+.bodytext 
+{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.container 
+{
+    position: relative;
+}
+.image 
+{
+    position: absolute;
+}
+
+.imageOne 
+{
+    z-index: -2;
+    min-width: 100%;
+    height: 200px;
+}
+
+.imageTwo 
+{
+    z-index: -1;
+    /*width: 100%;*/
+    width: 20%;
+}   
+    
+#img1 
+{
+    width: 100%;
+}
+    
+#img2 
+{
+    padding-top: 10px;       
+}
+
+#header 
 {
 	float: left;
 	width: 100%;
-	border-bottom: 1px dotted #5D5A53;
-	margin-bottom: 10px;
+	margin-bottom: 20px;
+    position: relative;
+    padding-top: 185px;
+}
+
+.topright 
+{
+    position: absolute;
+    right:0;
+    top:0;
+    font-size: 25px;
+    font-weight: 700;
+}
+
+.motto 
+{
+    float: left;
+    width: 55%;
+    margin: 0 1.5%;
+}
+
+.headlines 
+{
+    float: left;
+    width: 55%;
+    margin: 0 1.5%;
 }
 
 ul li a
@@ -79,6 +156,13 @@ ul#album-list li a span
 	color: #fff !important;
 }
 
+.partialViewWrapper
+{
+    height:200px;
+    width:200px;
+    overflow-y:auto;
+}
+
 #footer
 {
 	clear: both;
@@ -97,17 +181,19 @@ ul#navlist
 
 ul#navlist li
 {
-	display: inline;
+	display: inline-block;
 }
 
 ul#navlist li a
 {
-	border-left: 1px dotted #8A8575;
-	padding: 10px;
-	margin-top: 10px;
-	color: #8A8575;
+	border-left: 0px solid #373737;
+	/*padding: 10px;*/
+    padding: 0 1px;
+	margin-top: -70px;
+	color: #373737;
 	text-decoration: none;
-	float: left;
+	float: left; 
+    position: relative;
 }
 
 ul#navlist li:first-child a
@@ -233,6 +319,25 @@ input[type=text], input[type=password], select
 	width: 300px;
 }
 
+aside {
+    float: right;
+    width: 25%;
+}
+
+    aside ul {
+        list-style: none;
+        padding: 0;
+    }
+
+        aside ul li {
+            background: url("../Images/bullet.png") no-repeat 0 50%;
+            padding: 2px 0 2px 20px;
+        }
+
+.label {
+    font-weight: 700;
+}
+
 /* Styles for validation helpers */
 .field-validation-error {
     color: #ff0000;
@@ -276,16 +381,203 @@ th
 {
 	background-color: #9b9993;
 	color: #000;
-	font-size: 13px;
+	font-size: 18px;
 	text-align: left;
 }
 
 th, td
 {
 	padding-left: 5px;
+    color: #000;
+    font-size: 15px;
 }
 
 tr:hover
 {
 	background-color: #fff;
 }
+
+/************CSS Slider******************/
+
+.csslider 
+{
+  -moz-perspective: 1300px;
+  -ms-perspective: 1300px;
+  -webkit-perspective: 1300px;
+  perspective: 1300px;
+  display: inline-block;
+  margin-bottom: 22px;
+}
+
+.csslider > input 
+{
+  display: none;
+}
+
+.csslider > input:nth-of-type(10):checked ~ ul li:first-of-type 
+{
+  margin-left: -900%;
+}
+
+.csslider > input:nth-of-type(9):checked ~ ul li:first-of-type 
+{
+  margin-left: -800%;
+}
+
+.csslider > input:nth-of-type(8):checked ~ ul li:first-of-type 
+{
+  margin-left: -700%;
+}
+
+.csslider > input:nth-of-type(7):checked ~ ul li:first-of-type 
+{
+  margin-left: -600%;
+}
+
+.csslider > input:nth-of-type(6):checked ~ ul li:first-of-type 
+{
+  margin-left: -500%;
+}
+
+.csslider > input:nth-of-type(5):checked ~ ul li:first-of-type 
+{
+  margin-left: -400%;
+}
+
+.csslider > input:nth-of-type(4):checked ~ ul li:first-of-type 
+{
+  margin-left: -300%;
+}
+
+.csslider > input:nth-of-type(3):checked ~ ul li:first-of-type 
+{
+  margin-left: -200%;
+}
+
+.csslider > input:nth-of-type(2):checked ~ ul li:first-of-type 
+{
+  margin-left: -100%;
+}
+
+.csslider > input:nth-of-type(1):checked ~ ul li:first-of-type 
+{
+  margin-left: 0%;
+}
+
+.csslider > ul 
+{
+  width: 500px;
+  height: 300px;
+  z-index: 1;
+  font-size: 0;
+  line-height: 0;
+  background-color: #3a3a3a;
+  border: 10px solid #3a3a3a;
+  overflow: hidden;
+  white-space: nowrap;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.csslider > ul > li 
+{
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  -moz-transition: all 0.5s cubic-bezier(1, 1, 1, 1);
+  -o-transition: all 0.5s ease-out;
+  -webkit-transition: all 0.5s cubic-bezier(1, 1, 1, 1);
+  transition: all 0.5s cubic-bezier(1, 1, 1, 1);
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  -webkit-background-size: cover;
+  vertical-align: top;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  white-space: normal;
+}
+
+.csslider > ul > li.scrollable 
+{
+  overflow-y: scroll;
+}
+
+.csslider > .navigation 
+{
+  position: absolute;
+  bottom: -10px;
+  left: 55%;
+  z-index: 10;
+  margin-bottom: -10px;
+  font-size: 0;
+  line-height: 0;
+  text-align: center;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.csslider > .navigation > div 
+{
+  margin-left: -100%;
+}
+
+.csslider > .navigation label 
+{
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  border-radius: 50%;
+  margin: 0 4px;
+  padding: 4px;
+  background: #3a3a3a;
+}
+
+.csslider > .navigation label:after 
+{
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin-left: -6px;
+  margin-top: -6px;
+  background: #71ad37;
+  border-radius: 50%;
+  padding: 6px;
+  opacity: 0;
+}
+
+.csslider.inside .navigation
+ {
+  bottom: 10px;
+  margin-bottom: 10px;
+}
+
+.csslider.inside .navigation label 
+{
+  border: 1px solid #7e7e7e;
+}
+
+.csslider > input:nth-of-type(1):checked ~ .navigation label:nth-of-type(1):after,
+.csslider > input:nth-of-type(2):checked ~ .navigation label:nth-of-type(2):after,
+.csslider > input:nth-of-type(3):checked ~ .navigation label:nth-of-type(3):after,
+.csslider > input:nth-of-type(4):checked ~ .navigation label:nth-of-type(4):after,
+.csslider > input:nth-of-type(5):checked ~ .navigation label:nth-of-type(5):after,
+.csslider > input:nth-of-type(6):checked ~ .navigation label:nth-of-type(6):after,
+.csslider > input:nth-of-type(7):checked ~ .navigation label:nth-of-type(7):after,
+.csslider > input:nth-of-type(8):checked ~ .navigation label:nth-of-type(8):after,
+.csslider > input:nth-of-type(9):checked ~ .navigation label:nth-of-type(9):after,
+.csslider > input:nth-of-type(10):checked ~ .navigation label:nth-of-type(10):after,
+.csslider > input:nth-of-type(11):checked ~ .navigation label:nth-of-type(11):after 
+{
+  opacity: 1;
+}
+
+
+
+/************CSS Slider END******************/
+/*REFERENCE FOR SLIDER: https://github.com/drygiel/csslider */

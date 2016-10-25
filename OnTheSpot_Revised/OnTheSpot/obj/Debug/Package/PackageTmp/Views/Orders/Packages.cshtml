@@ -1,0 +1,51 @@
+﻿@model List<OnTheSpot.Models.Package>
+
+<script src="~/Scripts/jquery-1.8.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+<div class="bodytext">
+    @Html.ValidationSummary(true)
+    <table>
+            <tr>
+                <th></th>         
+                <th></th>  
+                <th></th>  
+                <th></th>        
+                <th>Priority</th>
+                <th>Weight</th>
+                <th>Assigned Courier</th>
+            </tr>
+        @for (int i = 0; i < Model.Count; i++)
+        {
+            <tr>
+
+                <td>@Html.HiddenFor(model => model[i].OrderID)</td>
+                <td>@Html.HiddenFor(model => model[i].Status)</td>
+                <td>@Html.HiddenFor(model => model[i].Collected)</td>
+                <td>@Html.HiddenFor(model => model[i].Delivered)</td>
+                
+                <td>
+                    @Html.RadioButtonFor(model => model[i].Priority, "Standard") Standard
+                    @Html.RadioButtonFor(model => model[i].Priority, "High") High
+                    @Html.RadioButtonFor(model => model[i].Priority, "Overnight") Overnight
+                </td>
+
+                <td>
+                    @Html.EditorFor(model => model[i].Weight)
+                    @Html.ValidationMessageFor(model => model[i].Weight)
+                </td>
+
+                <td>
+                    @if(User.IsInRole("Admin")) {
+                        @Html.DropDownListFor(model => model[i].AssignedCourier, (SelectList)ViewBag.Cour, string.Empty)
+                        @Html.ValidationMessageFor(model => model[i].AssignedCourier)
+                    } else {
+                        @Html.HiddenFor(model => model[i].AssignedCourier) 
+                    }
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+

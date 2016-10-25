@@ -1,0 +1,99 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>@ViewBag.Title -     OnTheSpot</title>
+        <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+        <meta name="viewport" content="width=device-width" />
+        @Styles.Render("~/Content/css")
+        @Scripts.Render("~/bundles/modernizr")
+    </head>
+    <body>
+        
+        <div class="container">
+            <div class="imageOne image">
+
+               <img src="~/Images/header.png" alt="head" width="2000" height="200" id="img1">
+
+            </div>
+
+            <div class="imageTwo image">
+
+                <img src="~/Images/buttons/OnTheSpotLogoPNG2.png" alt="body" width="320" height="168" id="img2">
+
+            </div>
+        </div>
+
+        <header>
+            <div id="header">
+            <div class="float-left">
+                <p class="site-title">
+                    @*<a runat="server" href="~/"><img src="~/Images/buttons/OnTheSpotLogoPNG2.png" alt="" /></a>*@
+                </p>
+            
+
+            <div class="topright">
+                @if (Request.IsAuthenticated) {
+                    <text>
+                        Hello, @Html.ActionLink(User.Identity.Name, "Manage", "Account", routeValues: null, htmlAttributes: new { @class = "username", title = "Manage" })!
+                        @using (Html.BeginForm("Logoff", "Account", FormMethod.Post, new { id = "logoutForm" })) {
+                            @Html.AntiForgeryToken()
+                            <a href="javascript:document.getElementById('logoutForm').submit()">Log off</a>
+                        }
+                    </text>
+                }
+            </div>
+            </div>
+            
+            <ul id="navlist">
+                @if (Request.IsAuthenticated) {
+                        
+                    <li><a href="@Url.Action("Index", "Home")" title="Home" class="links"><img alt="Home" src="@Url.Content("~/Images/buttons/Home1PNG.png")"></a></li>
+                    <li><a href="@Url.Action("About", "Home")" title="About" class="links"><img alt="About" src="@Url.Content("~/Images/buttons/About1PNG.png")"></a></li>
+                    <li><a href="@Url.Action("Contact", "Home")" title="Contact" class="links"><img alt="Contact" src="@Url.Content("~/Images/buttons/Contact1PNG.png")"></a></li>
+                    <li><a href="@Url.Action("Howto", "Home")" title="Howto" class="links"><img alt="How To" src="@Url.Content("~/Images/buttons/Howto1PNG.png")"</a></li>
+                    
+                    
+                    if (User.IsInRole("Courier")) {
+                        <li><a href="@Url.Action("Index", "Orders")" title="Deliveries" class="links"><img alt="Deliveries" src="@Url.Content("~/Images/buttons/Delivery1PNG.png")"></a></li>
+                        <li><a href="@Url.Action("Index", "Vehicles")" title="Vehicles" class="links"><img alt="Vehicles" src="@Url.Content("~/Images/buttons/Vehicles1PNG.png")"></a></li>                                                                                                                                                                  
+                    } else {   
+                        <li><a href="@Url.Action("Index", "Orders")" title="Deliveries" class="links"><img alt="Deliveries" src="@Url.Content("~/Images/buttons/Delivery1PNG.png")"></a></li>
+                    }
+                    
+                    if (User.IsInRole("Admin")) {
+                        <li><a href="@Url.Action("Index", "Users")" title="Users" class="links"><img alt="Users" src="@Url.Content("~/Images/buttons/Users1PNG.png")"></a></li>
+                        <li><a href="@Url.Action("Index", "Vehicles")" title="Vehicles" class="links"><img alt="Vehicles" src="@Url.Content("~/Images/buttons/Vehicles1PNG.png")"></a></li>                  
+                    }
+
+                    
+                } else {
+                    <li><a href="@Url.Action("Index", "Home")" title="Home" class="links"><img alt="Home" src="@Url.Content("~/Images/buttons/Home1PNG.png")"></a></li>
+                    <li><a href="@Url.Action("Register", "Account")" title="Register" class="links"><img alt="Register" src="@Url.Content("~/Images/buttons/Register1PNG.png")"></a></li>
+                    <li><a href="@Url.Action("Login", "Account")" title="Login" class="links"><img alt="Login" src="@Url.Content("~/Images/buttons/Login1PNG.png")"></a></li>
+                    <li><a href="@Url.Action("Howto", "Home")" title="Howto" class="links"><img alt="How To" src="@Url.Content("~/Images/buttons/Howto1PNG.png")"</a></li>
+                    <li><a href="@Url.Action("About", "Home")" title="About" class="links"><img alt="About" src="@Url.Content("~/Images/buttons/About1PNG.png")"></a></li>
+                    <li><a href="@Url.Action("Contact", "Home")" title="Contact" class="links"><img alt="Contact" src="@Url.Content("~/Images/buttons/Contact1PNG.png")"></a></li>
+                                        
+                }
+            </ul>
+            </div>
+        </header>
+        <div id="body">
+            @RenderSection("featured", required: false)
+            <section class="content-wrapper main-content clear-fix">
+                @RenderBody()
+            </section>
+        </div>
+        <footer>
+            <div class="content-wrapper">
+                <div class="float-left">
+                   <p>&copy; @DateTime.Now.Year - OnTheSpot Website</p> 
+                </div>
+            </div>
+        </footer>
+
+        @Scripts.Render("~/bundles/jquery")
+        @RenderSection("scripts", required: false)
+    </body>
+</html>

@@ -1,0 +1,52 @@
+﻿@model OnTheSpot.Models.Vehicle
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<div class="bodytext">
+    <h2>Details</h2>
+
+    <fieldset>
+        <legend>Vehicle</legend>
+
+        <div class="display-label">
+             @Html.DisplayNameFor(model => model.Registration)
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.Registration)
+        </div>
+
+        <div class="display-label">
+             @Html.DisplayNameFor(model => model.Type)
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.Type)
+        </div>
+
+        <div class="display-label">
+             @Html.DisplayNameFor(model => model.Owner)
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.Owner)
+        </div>
+
+        <div class="display-label">
+             @Html.DisplayNameFor(model => model.InUse)
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.InUse)
+        </div>
+
+        <div class="display-label">
+             @Html.DisplayNameFor(model => model.UsedBy)
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.UsedBy)
+        </div>
+    </fieldset>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id=Model.Registration }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</div>

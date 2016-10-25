@@ -1,0 +1,72 @@
+﻿@model OnTheSpot.Models.Vehicle
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<div class="bodytext">
+    <h2>Edit</h2>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+
+        <fieldset>
+            <legend>Vehicle</legend>
+
+            @Html.HiddenFor(model => model.Registration)
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Registration)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.Registration)
+                @Html.ValidationMessageFor(model => model.Registration)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Type)
+            </div>
+            <div class="editor-field">
+                @Html.DropDownListFor(model => model.Type, new SelectList(Enum.GetValues(typeof(OnTheSpot.Models.VehicleType))))
+                @Html.ValidationMessageFor(model => model.Type)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Owner)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.Owner)
+                @Html.ValidationMessageFor(model => model.Owner)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.InUse)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.InUse)
+                @Html.ValidationMessageFor(model => model.InUse)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.UsedBy)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.UsedBy)
+                @Html.ValidationMessageFor(model => model.UsedBy)
+            </div>
+
+            <p>
+                <input type="submit" value="Save" />
+            </p>
+        </fieldset>
+    }
+
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

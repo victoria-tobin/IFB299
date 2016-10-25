@@ -978,3 +978,9 @@ D:\1_MY_FILES\Uni\IFB299\IFB299\OnTheSpot_Revised\OnTheSpot\bin\ko\System.Spatia
 D:\1_MY_FILES\Uni\IFB299\IFB299\OnTheSpot_Revised\OnTheSpot\bin\ru\System.Spatial.resources.dll
 D:\1_MY_FILES\Uni\IFB299\IFB299\OnTheSpot_Revised\OnTheSpot\bin\zh-Hans\System.Spatial.resources.dll
 D:\1_MY_FILES\Uni\IFB299\IFB299\OnTheSpot_Revised\OnTheSpot\bin\zh-Hant\System.Spatial.resources.dll
+D:\1_MY_FILES\Uni\IFB299\IFB299\OnTheSpot_Revised\OnTheSpot\bin\System.Net.Http.Formatting.dll
+D:\1_MY_FILES\Uni\IFB299\IFB299\OnTheSpot_Revised\OnTheSpot\bin\System.Web.Http.dll
+D:\1_MY_FILES\Uni\IFB299\IFB299\OnTheSpot_Revised\OnTheSpot\bin\System.Web.Http.WebHost.dll
+D:\1_MY_FILES\Uni\IFB299\IFB299\OnTheSpot_Revised\OnTheSpot\bin\System.Net.Http.Formatting.xml
+D:\1_MY_FILES\Uni\IFB299\IFB299\OnTheSpot_Revised\OnTheSpot\bin\System.Web.Http.xml
+D:\1_MY_FILES\Uni\IFB299\IFB299\OnTheSpot_Revised\OnTheSpot\bin\System.Web.Http.WebHost.xml
