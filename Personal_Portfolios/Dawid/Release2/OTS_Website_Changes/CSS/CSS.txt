@@ -1,5 +1,5 @@
 /*########################Control for Header, Logo and Body##############################*/
-
+/*Body Controls*/
 body
 {
 	font-family: Arial, Helvetica, sans-serif;
@@ -10,14 +10,11 @@ body
     background-size: 100% 1000%;
 }
 
-/*As far as I am concerned, this is no longer needed, but I'll leave it anyway*/
-
-/*#container
+/*Image on top of another image control*/
+#container
 {
 	float: left;
-}*/
-
-
+}
 
 .container {
     position: relative;
@@ -49,8 +46,7 @@ width: 100%;
         
 }
 
-
-
+/*Header Controls*/
 #header
 {
 	float: left;
@@ -63,28 +59,15 @@ width: 100%;
     padding-top: 240px;
 }
 
+
+
 /*************************Control for Header, Logo and Body END************************/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+/*REFERENCE FOR Image on top of image: http://jsfiddle.net/doforumda/uS7nw/1/ AND  */ http://stackoverflow.com/questions/18235709/css-placing-one-image-on-top-of-another
 
 
 /************CSS Slider******************/
 
+/*Basic Slider Settings*/
 .csslider {
   -moz-perspective: 1300px;
   -ms-perspective: 1300px;
@@ -95,6 +78,8 @@ width: 100%;
 }
 .csslider > input {
   display: none;
+
+/*Image Scroll Lenght Controls*/
 }
 .csslider > input:nth-of-type(10):checked ~ ul li:first-of-type {
   margin-left: -900%;
@@ -125,6 +110,8 @@ width: 100%;
 }
 .csslider > input:nth-of-type(1):checked ~ ul li:first-of-type {
   margin-left: 0%;
+
+/*Slider Box Controls*/
 }
 .csslider > ul {
   width: 500px;
@@ -140,6 +127,8 @@ width: 100%;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
 }
+
+/*Slider Animation Controls*/
 .csslider > ul > li {
   display: inline-block;
   width: 100%;
@@ -158,9 +147,11 @@ width: 100%;
   box-sizing: border-box;
   white-space: normal;
 }
+
 .csslider > ul > li.scrollable {
   overflow-y: scroll;
 }
+/*Navigation of Slider Controls*/
 .csslider > .navigation {
   position: absolute;
   bottom: -10px;
@@ -225,3 +216,10 @@ width: 100%;
 
 /************CSS Slider END******************/
 /*REFERENCE FOR SLIDER: https://github.com/drygiel/csslider */
+/*CHANGES FROM ORGINAL*/
+	/*Changes to the animation*/
+	/*Removal of scroll buttons on side*/
+	/*Removal of Radio Button Highlight*/
+	/*Body Controls*/
+	/*Other minor changes*/
+
