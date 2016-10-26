@@ -3,25 +3,28 @@
     ViewBag.Title = "Manage Account";
 }
 
+    
 <div class="bodytext">
     <hgroup class="title">
         <h1>@ViewBag.Title.</h1>
     </hgroup>
-
+    
     <p class="message-success">@ViewBag.StatusMessage</p>
 
     <p>You're logged in as <strong>@User.Identity.Name</strong>.</p>
 
     @if (ViewBag.HasLocalPassword)
     {
+
         @Html.Partial("_manageAccountPartial")
     }
     else
     { 
         @Html.Partial("_SetPasswordPartial")
     }
-</div>
 
+</div>
+    
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }

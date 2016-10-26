@@ -1,7 +1,17 @@
 ﻿@model IEnumerable<OnTheSpot.Models.Order>
 
+@{
+    ViewBag.Title = "Index";
+}
+
+
+@*Landing page when clicking on the 'Delivery' Tab - just shows a table of orders*@
+
 
 <div class="bodytext">
+
+    <h1>All Current Orders</h1>
+
     <div>
         <ul id ="m">
        
@@ -13,21 +23,13 @@
         <li>@Html.ActionLink("Orders", "Index", "Orders")</li>
         <li>@Html.ActionLink("Packages", "Index", "Packages")</li>
         }
-
+        @if (User.IsInRole("Admin") || User.IsInRole("Customer"))
+        {
+            <li>@Html.ActionLink("New Order", "Create")</li>
+        }
         
         </ul>
     </div>
-
-
-    @{
-        ViewBag.Title = "Index";
-    }
-    @if (User.IsInRole("Admin") || User.IsInRole("Customer")) {
-    <p>
-        @Html.ActionLink("New Order", "Create")
-    </p>
-    }
-
 
     @using (Html.BeginForm())
     {

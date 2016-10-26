@@ -13,19 +13,23 @@ namespace OnTheSpot.Controllers
 {
     public class UsersController : Controller
     {
+        // Forms a connection with the database.
         private DatabaseModels db = new DatabaseModels();
 
-        //
-        // GET: /Users/
-
+        /// <summary>
+        /// Default controller for users. Displays current users.
+        /// </summary>
+        /// <returns></returns>
         public ActionResult Index()
         {
             return View(db.Users.ToList());
         }
 
-        //
-        // GET: /Users/Details/5
-
+        /// <summary>
+        /// Details controller, displays the details of a given user.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public ActionResult Details(int id = 0)
         {
             UserProfile userprofile = db.Users.Find(id);
@@ -36,17 +40,20 @@ namespace OnTheSpot.Controllers
             return View(userprofile);
         }
 
-        //
-        // GET: /Users/Create
-
+        /// <summary>
+        /// Create controller for creating a package for an user.
+        /// </summary>
+        /// <returns></returns>
         public ActionResult Create()
         {
             return View();
         }
 
-        //
-        // POST: /Users/Create
-
+        /// <summary>
+        /// Create controller that saves the properities of a userprofile.
+        /// </summary>
+        /// <param name="userprofile"></param>
+        /// <returns></returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(UserProfile userprofile)
@@ -57,14 +64,16 @@ namespace OnTheSpot.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
             return View(userprofile);
         }
 
-
+        /// <summary>
+        /// Get roles controller, gets the properities of a role.
+        /// </summary>
+        /// <param name="r"></param>
+        /// <returns></returns>
         private IEnumerable<SelectListItem> GetRoles(string r)
         {
-
             List<SelectListItem> roles = new List<SelectListItem>();
             roles.Add(new SelectListItem { Text = "Customer", Value = "Customer", Selected = (r == "Customer") });
             roles.Add(new SelectListItem { Text = "Courier", Value = "Courier", Selected = (r == "Courier") });
@@ -72,10 +81,99 @@ namespace OnTheSpot.Controllers
             return new SelectList(roles, "Value", "Text");
         }
 
+        /// <summary>
+        /// Manage conroller for displaying messaging during a manage account operation.
+        /// </summary>
+        /// <param name="message"></param>
+        /// <returns></returns>
+        public ActionResult Manage(ManageMessageId? message)
+        {
+            BigViewModel model = new BigViewModel();
+            model.UserProfile = db.Users.Find(WebSecurity.GetUserId(User.Identity.Name));
 
-        //
-        // GET: /Users/Edit/5
+            ViewBag.StatusMessage =
+                message == ManageMessageId.ChangePasswordSuccess ? "Your password has been changed."
+                : message == ManageMessageId.SetPasswordSuccess ? "Your password has been set."
+                : message == ManageMessageId.RemoveLoginSuccess ? "The external login was removed."
+                : "";
+            ViewBag.HasLocalPassword = OAuthWebSecurity.HasLocalAccount(WebSecurity.GetUserId(User.Identity.Name));
+            ViewBag.ReturnUrl = Url.Action("Manage");
 
+            return View(model);
+        }
+
+        /// <summary>
+        /// Manage controller, allows the properities of a user to be changed/modified.
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Manage(BigViewModel model)
+        {
+            bool hasLocalAccount = OAuthWebSecurity.HasLocalAccount(WebSecurity.GetUserId(User.Identity.Name));
+            int id = model.UserProfile.UserID;
+            ViewBag.HasLocalPassword = hasLocalAccount;
+            ViewBag.ReturnUrl = Url.Action("Manage");
+            if (hasLocalAccount)
+            {
+                if (ModelState.IsValid)
+                {
+                    // ChangePassword will throw an exception rather than return false in certain failure scenarios.
+                    bool changePasswordSucceeded;
+                    try
+                    {
+                        changePasswordSucceeded = WebSecurity.ChangePassword(User.Identity.Name, model.SecurityModel.OldPassword, model.SecurityModel.NewPassword);
+                    }
+                    catch (Exception)
+                    {
+                        changePasswordSucceeded = false;
+                    }
+
+                    if (changePasswordSucceeded)
+                    {
+                        db.Entry(model.UserProfile).State = EntityState.Modified;
+                        db.SaveChanges();
+                        return RedirectToAction("Manage", new { Message = ManageMessageId.ChangePasswordSuccess });
+                    }
+                    else
+                    {
+                        ModelState.AddModelError("", "The current password is incorrect or the new password is invalid.");
+                    }
+                }
+            }
+            else
+            {
+                // User does not have a local password so remove any validation errors caused by a missing
+                // OldPassword field
+                ModelState state = ModelState["OldPassword"];
+                if (state != null)
+                {
+                    state.Errors.Clear();
+                }
+                if (ModelState.IsValid)
+                {
+                    try
+                    {
+                        WebSecurity.CreateAccount(User.Identity.Name, model.SecurityModel.NewPassword);
+                        return RedirectToAction("Manage", new { Message = ManageMessageId.SetPasswordSuccess });
+                    }
+                    catch (Exception)
+                    {
+                        ModelState.AddModelError("", String.Format("Unable to create local account. An account with the name \"{0}\" may already exist.", User.Identity.Name));
+                    }
+                }
+            }
+
+            // If we got this far, something failed, redisplay form
+            return View(model);
+        }
+
+        /// <summary>
+        /// Edit controller, obtains a user profile.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public ActionResult Edit(int id = 0)
         {
             UserProfile userprofile = db.Users.Find(id);
@@ -87,9 +185,11 @@ namespace OnTheSpot.Controllers
             return View(userprofile);
         }
 
-        //
-        // POST: /Users/Edit/5
-
+        /// <summary>
+        /// Edit controller, for populating the properities of that user.
+        /// </summary>
+        /// <param name="userprofile"></param>
+        /// <returns></returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(UserProfile userprofile)
@@ -113,9 +213,11 @@ namespace OnTheSpot.Controllers
             return View(userprofile);
         }
 
-        //
-        // GET: /Users/Delete/5
-
+        /// <summary>
+        /// "Deletes" controller, for deleting a user. Finds the current user properties.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public ActionResult Delete(int id = 0)
         {
             UserProfile userprofile = db.Users.Find(id);
@@ -126,9 +228,11 @@ namespace OnTheSpot.Controllers
             return View(userprofile);
         }
 
-        //
-        // POST: /Users/Delete/5
-
+        /// <summary>
+        /// DeleteConfirmed controller for removing a user.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
@@ -143,101 +247,14 @@ namespace OnTheSpot.Controllers
             return RedirectToAction("Index");
         }
 
+        /// <summary>
+        /// Disposes object.
+        /// </summary>
+        /// <param name="disposing"></param>
         protected override void Dispose(bool disposing)
         {
             db.Dispose();
             base.Dispose(disposing);
-        }
-
-        public ActionResult Manage(ManageMessageId? message)
-        {
-            BigViewModel model = new BigViewModel();
-            model.UserProfile = db.Users.Find(WebSecurity.GetUserId(User.Identity.Name));
-
-            ViewBag.StatusMessage =
-                message == ManageMessageId.ChangePasswordSuccess ? "Your password has been changed."
-                : message == ManageMessageId.SetPasswordSuccess ? "Your password has been set."
-                : message == ManageMessageId.RemoveLoginSuccess ? "The external login was removed."
-                : "";
-            ViewBag.HasLocalPassword = OAuthWebSecurity.HasLocalAccount(WebSecurity.GetUserId(User.Identity.Name));
-            ViewBag.ReturnUrl = Url.Action("Manage");
-
-            return View(model);
-        }
-
-        //
-        // POST: /Account/Manage
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Manage(BigViewModel model)
-        {
-            bool hasLocalAccount = OAuthWebSecurity.HasLocalAccount(WebSecurity.GetUserId(User.Identity.Name));
-
-            int id = model.UserProfile.UserID;
-            //UserProfile user = model.UserProfile; //= db.Users.Find(WebSecurity.GetUserId(User.Identity.Name));
-
-            //UserProfile user = db.Users.Find(WebSecurity.GetUserId(User.Identity.Name)); //db.Users.Find(WebSecurity.GetUserId(User.Identity.Name));  
-
-            //UserProfile user = db.Users.Find(WebSecurity.GetUserId(User.Identity.Name));
-
-            ViewBag.HasLocalPassword = hasLocalAccount;
-            ViewBag.ReturnUrl = Url.Action("Manage");
-            if (hasLocalAccount)
-            {
-                if (ModelState.IsValid)
-                {
-                    // ChangePassword will throw an exception rather than return false in certain failure scenarios.
-                    bool changePasswordSucceeded;
-                    try
-                    {
-                        changePasswordSucceeded = WebSecurity.ChangePassword(User.Identity.Name, model.SecurityModel.OldPassword, model.SecurityModel.NewPassword);
-                    }
-                    catch (Exception)
-                    {
-                        changePasswordSucceeded = false;
-                    }
-
-                    if (changePasswordSucceeded)
-                    {
-                        
-                        db.Entry(model.UserProfile).State = EntityState.Modified;
-                        db.SaveChanges();
-
-                        return RedirectToAction("Manage", new { Message = ManageMessageId.ChangePasswordSuccess });
-                    }
-                    else
-                    {
-                        ModelState.AddModelError("", "The current password is incorrect or the new password is invalid.");
-                    }
-                }
-            }
-            else
-            {
-                // User does not have a local password so remove any validation errors caused by a missing
-                // OldPassword field
-                ModelState state = ModelState["OldPassword"];
-                if (state != null)
-                {
-                    state.Errors.Clear();
-                }
-
-                if (ModelState.IsValid)
-                {
-                    try
-                    {
-                        WebSecurity.CreateAccount(User.Identity.Name, model.SecurityModel.NewPassword);
-                        return RedirectToAction("Manage", new { Message = ManageMessageId.SetPasswordSuccess });
-                    }
-                    catch (Exception)
-                    {
-                        ModelState.AddModelError("", String.Format("Unable to create local account. An account with the name \"{0}\" may already exist.", User.Identity.Name));
-                    }
-                }
-            }
-
-            // If we got this far, something failed, redisplay form
-            return View(model);
         }
     }
 }

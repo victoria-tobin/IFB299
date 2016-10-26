@@ -15,46 +15,42 @@ namespace OnTheSpot.Controllers
 {
     public class PackagesController : Controller
     {
+        // Forms a connection with the database.
         private DatabaseModels db = new DatabaseModels();
 
-        //
-        // GET: /Packages/
-
+        /// <summary>
+        /// Default controller for Packages. Displays packages for an order.
+        /// </summary>
+        /// <param name="searchInt"></param>
+        /// <returns></returns>
         public ActionResult Index(int? searchInt)
         {
-
             ViewBag.Search = searchInt;
-
             var packages = from p in db.Packages
-                           select p;
-                       
+                           select p;           
             if (User.IsInRole("Courier"))
             {
                 packages = from p in db.Packages.Where(p => p.AssignedCourier == WebSecurity.CurrentUserName)
                                select p;
             }
-
             if (User.IsInRole("Customer"))
             {
-
                 packages = from p in db.Packages.Where(p => p.Order.Username == WebSecurity.CurrentUserName)
-                           select p;
-                           
+                           select p;             
             }
-
-
             if (searchInt != null)
             {
                 packages = from o in packages.Where(p => p.OrderID == searchInt)
                            select o;
             }
-
             return View(packages.ToList());
         }
 
-        //
-        // GET: /Packages/Details/5
-
+        /// <summary>
+        /// Details controller, displays the details of a given package.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public ActionResult Details(int id = 0)
         {
             Package package = db.Packages.Find(id);
@@ -65,9 +61,10 @@ namespace OnTheSpot.Controllers
             return View(package);
         }
 
-        //
-        // GET: /Packages/Create
-
+        /// <summary>
+        /// Create controller for creating a package for an order.
+        /// </summary>
+        /// <returns></returns>
         public ActionResult Create()
         {
 
@@ -92,16 +89,17 @@ namespace OnTheSpot.Controllers
             return View(pack);
         }
 
-        //
-        // POST: /Packages/Create
-
+        /// <summary>
+        /// Create controller that populates the properities of a package.
+        /// </summary>
+        /// <param name="package"></param>
+        /// <returns></returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(Package package)
         {
             if (ModelState.IsValid)
             {
-
                 var p = new Package
                 {
                     OrderID = package.OrderID,
@@ -110,23 +108,23 @@ namespace OnTheSpot.Controllers
                     Weight = package.Weight,
                     AssignedCourier = package.AssignedCourier
                 };
-
                 db.Packages.Add(p);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
             // select list for couriers
             var cour = db.Users.Where(p => p.UserRole == "Courier");
             ViewBag.Cour = new SelectList(cour, "UserName", "UserName");
-
             // select list for order ID
             ViewBag.OrderID = new SelectList(db.Orders, "OrderID", "OrderID", package.OrderID);
-
-
             return View(package);
         }
 
+        /// <summary>
+        /// Collected controller, for stating that a package is indeed collected.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public ActionResult Collected(int id = 0)
         {
             Package package = db.Packages.Find(id);
@@ -135,10 +133,16 @@ namespace OnTheSpot.Controllers
             package.Status = Status.AtWarehouse;
             db.Orders.Find(package.OrderID).Completed = false;
 
+
             db.SaveChanges();
             return RedirectToAction("Index");
         }
 
+        /// <summary>
+        /// Intransit controller, for stating that a package is intransit.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public ActionResult InTransit(int id = 0)
         {
             Package package = db.Packages.Find(id);
@@ -154,6 +158,11 @@ namespace OnTheSpot.Controllers
             return RedirectToAction("Index");
         }
 
+        /// <summary>
+        /// Delivered controller, for stating that a package is delivered.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public ActionResult Delivered(int id = 0)
         {
             Package package = db.Packages.Find(id);
@@ -170,9 +179,11 @@ namespace OnTheSpot.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
-        //
-        // GET: /Packages/Edit/5
 
+        /// <summary>
+        /// CheckIfCompleted controller, for checking if a package is indeed complete.
+        /// </summary>
+        /// <param name="id"></param>
         private void checkIfCompleted(int id)
         {
             // set completed value in order to true if all packages have been delivered
@@ -188,12 +199,14 @@ namespace OnTheSpot.Controllers
             {
                 db.Orders.Find(orderID).Completed = true;
             }
-
-
             db.SaveChanges();
-
         }
 
+        /// <summary>
+        /// Edit controller, obtains the properities of a specific package.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public ActionResult Edit(int id = 0)
         {
             Package package = db.Packages.Find(id);
@@ -209,9 +222,11 @@ namespace OnTheSpot.Controllers
             return View(package);
         }
 
-        //
-        // POST: /Packages/Edit/5
-
+        /// <summary>
+        /// Edit controller, for populating the properities of that package.
+        /// </summary>
+        /// <param name="package"></param>
+        /// <returns></returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(Package package)
@@ -234,9 +249,11 @@ namespace OnTheSpot.Controllers
             return View(package);
         }
 
-        //
-        // GET: /Packages/Delete/5
-
+        /// <summary>
+        /// "Deletes" controller, for deleting a package.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public ActionResult Delete(int id = 0)
         {
             Package package = db.Packages.Find(id);
@@ -247,9 +264,11 @@ namespace OnTheSpot.Controllers
             return View(package);
         }
 
-        //
-        // POST: /Packages/Delete/5
-
+        /// <summary>
+        /// DeleteConfirmed controller for removing a package.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
@@ -260,6 +279,10 @@ namespace OnTheSpot.Controllers
             return RedirectToAction("Index");
         }
 
+        /// <summary>
+        /// Disposes object.
+        /// </summary>
+        /// <param name="disposing"></param>
         protected override void Dispose(bool disposing)
         {
             db.Dispose();

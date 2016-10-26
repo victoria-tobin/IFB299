@@ -11,6 +11,8 @@ namespace OnTheSpot.Filters
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, AllowMultiple = false, Inherited = true)]
     public sealed class InitializeSimpleMembershipAttribute : ActionFilterAttribute
     {
+        // Leave disabled so as to not interefere with Websecurity functionality
+
         /*
         private static SimpleMembershipInitializer _initializer;
         private static object _initializerLock = new object();

@@ -26,11 +26,11 @@ namespace OnTheSpot.Models
 
         public DateTime OrderSubmitted { get; set; }
 
-        [Required(ErrorMessage = "Please provide a pickup address", AllowEmptyStrings=false)]
+       // [Required(ErrorMessage = "Please provide a pickup address", AllowEmptyStrings=false)]
         [Display(Name = "Pickup Address")]
         public string PickupAddress { get; set; }
 
-        [Required(ErrorMessage = "Please provide a delivery address", AllowEmptyStrings=false)]
+        // [Required(ErrorMessage = "Please provide a delivery address", AllowEmptyStrings=false)]
         [Display(Name = "Delivery Address")]
         public string DeliveryAddress { get; set; }
 

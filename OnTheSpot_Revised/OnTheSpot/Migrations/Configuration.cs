@@ -11,15 +11,23 @@ namespace OnTheSpot.Migrations
 
     internal sealed class Configuration : DbMigrationsConfiguration<OnTheSpot.DAL.DatabaseModels>
     {
+        /// <summary>
+        /// Allows automatic migrations of the databases
+        /// </summary>
         public Configuration()
         {
             AutomaticMigrationsEnabled = true;
             AutomaticMigrationDataLossAllowed = true;
         }
 
+        /// <summary>
+        /// Seeds the database with values that are used for testing
+        /// </summary>
+        /// <param name="context">The database model, used to seed</param>
         protected override void Seed(OnTheSpot.DAL.DatabaseModels context)
         {
 
+            //If Websecurity is initialized initialize a database connection
             if (!WebMatrix.WebData.WebSecurity.Initialized)
             {
                 WebMatrix.WebData.WebSecurity.InitializeDatabaseConnection("DatabaseModels",

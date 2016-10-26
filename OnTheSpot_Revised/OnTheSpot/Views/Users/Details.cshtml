@@ -7,50 +7,52 @@
 
 @*Admin only view to view all details for a user account*@
 
+<div class="bodytext">
 
-<fieldset>
+    <h1>User details</h1>
+    <h2>Overview of User Information</h2>
 
-    <legend> Identification </legend>
-    <div class="display-field">
-        <strong> @Html.DisplayNameFor(model => model.UserRole) </strong>: @Html.DisplayFor(model => model.UserRole)
-    </div>
-    <div class="display-field">
-        <strong> @Html.DisplayNameFor(model => model.FirstName) </strong>: @Html.DisplayFor(model => model.FirstName)
-    </div>
-    <div class="display-field">
-        <strong> @Html.DisplayNameFor(model => model.MiddleName) </strong>: @Html.DisplayFor(model => model.MiddleName)
-    </div>
-    <div class="display-field">
-        <strong> @Html.DisplayNameFor(model => model.LastName) </strong>: @Html.DisplayFor(model => model.LastName)
-    </div>
+    <fieldset>
+        <legend> Identification </legend>
+        <div class="display-field">
+            <strong> @Html.DisplayNameFor(model => model.UserRole) </strong>: @Html.DisplayFor(model => model.UserRole)
+        </div>
+        <div class="display-field">
+            <strong> @Html.DisplayNameFor(model => model.FirstName) </strong>: @Html.DisplayFor(model => model.FirstName)
+        </div>
+        <div class="display-field">
+            <strong> @Html.DisplayNameFor(model => model.MiddleName) </strong>: @Html.DisplayFor(model => model.MiddleName)
+        </div>
+        <div class="display-field">
+            <strong> @Html.DisplayNameFor(model => model.LastName) </strong>: @Html.DisplayFor(model => model.LastName)
+        </div>
+        <legend> Contact Information </legend>
+        <div class="display-field">
+            <strong> @Html.DisplayNameFor(model => model.Email) </strong>: @Html.DisplayFor(model => model.Email)
+        </div>
+        <div class="display-field">
+            <strong> @Html.DisplayNameFor(model => model.Phonenumber) </strong>: @Html.DisplayFor(model => model.Phonenumber)
+        </div>
+        <legend> Address Information </legend>
+        <div class="display-field">
+            <strong> @Html.DisplayNameFor(model => model.Country) </strong>: @Html.DisplayFor(model => model.Country)
+        </div>
+        <div class="display-field">
+            <strong> @Html.DisplayNameFor(model => model.State) </strong>: @Html.DisplayFor(model => model.State)
+        </div>
+        <div class="display-field">
+            <strong> @Html.DisplayNameFor(model => model.City) </strong>: @Html.DisplayFor(model => model.City)
+        </div>
+        <div class="display-field">
+            <strong> @Html.DisplayNameFor(model => model.Postcode) </strong>: @Html.DisplayFor(model => model.Postcode)
+        </div>
+        <div class="display-field">
+            <strong> @Html.DisplayNameFor(model => model.StreetAddress) </strong>: @Html.DisplayFor(model => model.StreetAddress)
+        </div>
+    </fieldset>
 
-    <legend> Contact Information </legend>
-    <div class="display-field">
-        <strong> @Html.DisplayNameFor(model => model.Email) </strong>: @Html.DisplayFor(model => model.Email)
-    </div>
-    <div class="display-field">
-        <strong> @Html.DisplayNameFor(model => model.Phonenumber) </strong>: @Html.DisplayFor(model => model.Phonenumber)
-    </div>
-
-    <legend> Address Information </legend>
-    <div class="display-field">
-        <strong> @Html.DisplayNameFor(model => model.Country) </strong>: @Html.DisplayFor(model => model.Country)
-    </div>
-    <div class="display-field">
-        <strong> @Html.DisplayNameFor(model => model.State) </strong>: @Html.DisplayFor(model => model.State)
-    </div>
-    <div class="display-field">
-        <strong> @Html.DisplayNameFor(model => model.City) </strong>: @Html.DisplayFor(model => model.City)
-    </div>
-    <div class="display-field">
-        <strong> @Html.DisplayNameFor(model => model.Postcode) </strong>: @Html.DisplayFor(model => model.Postcode)
-    </div>
-    <div class="display-field">
-        <strong> @Html.DisplayNameFor(model => model.StreetAddress) </strong>: @Html.DisplayFor(model => model.StreetAddress)
-    </div>
-
-</fieldset>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.UserID }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.UserID }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</div>

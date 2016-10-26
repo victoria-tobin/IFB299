@@ -1,14 +1,24 @@
 ﻿@model IEnumerable<OnTheSpot.Models.Package>
 
 
+
+@*Landing page for the packages section - admin is given a full view, customers can only see the details of their own packages*@
+
+
 <div class="bodytext">
+
+    <h1>All Current Orders</h1>
+
     <div>
         <ul id ="m">
             @if (User.IsInRole("Admin")) {
                 <li>@Html.ActionLink("All Orders", "Index", "Orders")</li>
                 <li>@Html.ActionLink("Outstanding Orders", "Index", "Orders", new { outstanding = true }, null)</li>
                 <li>@Html.ActionLink("Packages", "Index", "Packages")</li>
-                } else {
+                <li>@Html.ActionLink("New Package", "Create")</li>
+                }
+                else
+                {
                 <li>@Html.ActionLink("Orders", "Index", "Orders")</li>
                 <li>@Html.ActionLink("Packages", "Index", "Packages")</li>
             }
@@ -19,12 +29,6 @@
     @{
         ViewBag.Title = "Packages";
     }
-
-    <p>
-        @if (User.IsInRole("Admin")) {
-        @Html.ActionLink("New Package", "Create")
-        }
-    </p>
 
     @using (Html.BeginForm())
     {
@@ -55,18 +59,27 @@
                 @Html.DisplayNameFor(model => model.Weight)
             </th>
             <th>
-                @Html.DisplayName("Length")
+                @Html.DisplayNameFor(model => model.Length)
             </th>
             <th>
-                @Html.DisplayName("Width")
+                @Html.DisplayNameFor(model => model.Width)
             </th>
             <th>
-                @Html.DisplayName("Height")
+                @Html.DisplayNameFor(model => model.Height)
             </th>
 
             @if (User.IsInRole("Admin")) {
             <th>
                 @Html.DisplayNameFor(model => model.AssignedCourier)
+            </th>
+            }
+            @if (User.IsInRole("Customer") || User.IsInRole("Courier"))
+            {
+            <th>
+                @Html.DisplayNameFor(model => model.Collected)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Delivered)
             </th>
             }
 
@@ -112,6 +125,16 @@
                     @Html.ActionLink("Delete", "Delete", new { id=item.PackageID })
                 </td>
             }
+            
+            @if (User.IsInRole("Customer") || User.IsInRole("Courier"))
+            {
+            <td>
+                @Html.DisplayFor(modelItem => item.Collected)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Delivered)
+            </td>
+            }
             @if(User.IsInRole("Courier"))
             {
                 <td>
@@ -122,9 +145,9 @@
         
         </tr>
     }
-
+       
     </table>
-
+@if(User.IsInRole("Admin")) {
     <br />
     <h3> Dates </h3>
 
@@ -161,4 +184,5 @@
         </tr>
     }
     </table>
+       }
 </div>

@@ -6,13 +6,19 @@
 
 
 <div class="bodytext">
+
+    <h1>All Current Orders</h1>
+
     <div>
         <ul id ="m">
             @if (User.IsInRole("Admin")) {
                 <li>@Html.ActionLink("All Orders", "Index", "Orders")</li>
                 <li>@Html.ActionLink("Outstanding Orders", "Index", "Orders", new { outstanding = true }, null)</li>
                 <li>@Html.ActionLink("Packages", "Index", "Packages")</li>
-                } else {
+                <li>@Html.ActionLink("New Package", "Create")</li>
+                }
+                else
+                {
                 <li>@Html.ActionLink("Orders", "Index", "Orders")</li>
                 <li>@Html.ActionLink("Packages", "Index", "Packages")</li>
             }
@@ -23,12 +29,6 @@
     @{
         ViewBag.Title = "Packages";
     }
-
-    <p>
-        @if (User.IsInRole("Admin")) {
-        @Html.ActionLink("New Package", "Create")
-        }
-    </p>
 
     @using (Html.BeginForm())
     {

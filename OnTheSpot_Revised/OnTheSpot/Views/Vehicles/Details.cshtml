@@ -7,46 +7,47 @@
 @*Admin and courier only view - view the details of a particular vehicle*@
 
 <div class="bodytext">
-    <h2>Details</h2>
+
+    <h1>Vehicle Details</h1>
+    <h2>Overview of User Information</h2>
 
     <fieldset>
-        <legend>Vehicle</legend>
-
-        <div class="display-label">
-             @Html.DisplayNameFor(model => model.Registration)
+        <legend> Identification </legend>
+        <div class="display-field">
+            <strong> Registration: </strong>
         </div>
         <div class="display-field">
             @Html.DisplayFor(model => model.Registration)
         </div>
-
-        <div class="display-label">
-             @Html.DisplayNameFor(model => model.Type)
+        <div class="display-field">
+            <strong> Make: </strong>
         </div>
         <div class="display-field">
             @Html.DisplayFor(model => model.Type)
         </div>
-
-        <div class="display-label">
-             @Html.DisplayNameFor(model => model.Owner)
+        <div class="display-field">
+            <strong> Owner: </strong>
         </div>
         <div class="display-field">
             @Html.DisplayFor(model => model.Owner)
         </div>
 
-        <div class="display-label">
-             @Html.DisplayNameFor(model => model.InUse)
+        <legend> Current Status </legend>
+
+        <div class="display-field">
+            <strong> In Use? </strong>
         </div>
         <div class="display-field">
             @Html.DisplayFor(model => model.InUse)
         </div>
-
-        <div class="display-label">
-             @Html.DisplayNameFor(model => model.UsedBy)
+        <div class="display-field">
+            <strong> Used By: </strong>
         </div>
         <div class="display-field">
             @Html.DisplayFor(model => model.UsedBy)
         </div>
     </fieldset>
+
     <p>
         @Html.ActionLink("Edit", "Edit", new { id=Model.Registration }) |
         @Html.ActionLink("Back to List", "Index")

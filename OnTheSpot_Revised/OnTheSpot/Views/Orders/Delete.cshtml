@@ -8,30 +8,33 @@
 
 
 <div class="bodytext">
-    <h2>Delete</h2>
 
-    <h3>Are you sure you want to delete this?</h3>
+    <h1>Delete/Cancel Order</h1>
+    <h2>Are you sure about this?</h2>
+
     <fieldset>
-        <legend>Order</legend>
+        <div class="editor-label">
+            <strong> Order ID: </strong>
+        </div>
+        <div class="editor-field">
+            @Html.DisplayFor(model => model.OrderID)
+        </div>
 
-        <table>
+        <div class="editor-label">
+            <strong> Username: </strong>
+        </div>
+        <div class="editor-field">
+            @Html.DisplayFor(model => model.Username)
+        </div>
 
-            <tr>
-                <td>@Html.LabelFor(model => model.OrderID)</td>
-                <td>@Html.DisplayFor(model => model.OrderID)</td>
-            </tr>
-            <tr>
-                <td>@Html.LabelFor(model => model.Username)</td>
-                <td>@Html.DisplayFor(model => model.Username)</td>
-            </tr>
-            <tr>
-                <td>@Html.LabelFor(model => model.OrderSubmitted)</td>
-                <td>@Html.DisplayFor(model => model.OrderSubmitted)</td>
-            </tr>
-
-        </table>
-
+        <div class="editor-label">
+            <strong> Order Submitted: </strong>
+        </div>
+        <div class="editor-field">
+            @Html.DisplayFor(model => model.OrderSubmitted)
+        </div>
     </fieldset>
+
     @using (Html.BeginForm()) {
         @Html.AntiForgeryToken()
         <p>

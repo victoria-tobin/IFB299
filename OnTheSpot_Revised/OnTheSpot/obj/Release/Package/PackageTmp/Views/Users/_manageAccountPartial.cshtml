@@ -8,7 +8,12 @@
     <fieldset>
         <legend>Account details (Requires password confirmation)</legend>
 
-        @Html.HiddenFor(model => model.UserProfile.UserName, new { @Value = User.Identity.Name })
+        @Html.HiddenFor(model => model.UserProfile.UserName)
+        @Html.HiddenFor(model => model.UserProfile.UserID)
+        @Html.HiddenFor(model => model.UserProfile.UserRole)
+        @Html.HiddenFor(model => model.UserProfile.FirstName)
+        @Html.HiddenFor(model => model.UserProfile.MiddleName)
+        @Html.HiddenFor(model => model.UserProfile.LastName)
 
         <legend>Contact Information</legend>
         <div class="editor-label">
@@ -85,6 +90,6 @@
             </div>
         </div>
 
-        <input type="submit" value="Change details" />
+        <input type="submit" value="Save" />
     </fieldset>
 }

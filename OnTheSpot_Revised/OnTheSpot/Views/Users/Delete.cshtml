@@ -8,31 +8,55 @@
 
 
 <div class="bodytext">
-    <h2>Delete</h2>
+    <h1>Delete Account</h1>
 
-    <h3>Are you sure you want to delete this?</h3>
+    <h2>Are you sure you want to delete this?</h2>
     <fieldset>
-        <legend>UserProfile</legend>
-
-        <div class="display-label">
-             @Html.DisplayNameFor(model => model.UserRole)
+        <legend> Identification </legend>
+        <div class="display-field">
+            <strong> @Html.DisplayNameFor(model => model.UserRole) </strong>: @Html.DisplayFor(model => model.UserRole)
         </div>
         <div class="display-field">
-            @Html.DisplayFor(model => model.UserRole)
-        </div>
-
-        <div class="display-label">
-             @Html.DisplayNameFor(model => model.UserName)
+            <strong> @Html.DisplayNameFor(model => model.FirstName) </strong>: @Html.DisplayFor(model => model.FirstName)
         </div>
         <div class="display-field">
-            @Html.DisplayFor(model => model.UserName)
+            <strong> @Html.DisplayNameFor(model => model.MiddleName) </strong>: @Html.DisplayFor(model => model.MiddleName)
         </div>
-    </fieldset>
-    @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
-        <p>
-            <input type="submit" value="Delete" /> |
-            @Html.ActionLink("Back to List", "Index")
-        </p>
-    }
-J</div>
+        <div class="display-field">
+            <strong> @Html.DisplayNameFor(model => model.LastName) </strong>: @Html.DisplayFor(model => model.LastName)
+        </div>
+
+        <legend> Contact Information </legend>
+        <div class="display-field">
+            <strong> @Html.DisplayNameFor(model => model.Email) </strong>: @Html.DisplayFor(model => model.Email)
+        </div>
+        <div class="display-field">
+            <strong> @Html.DisplayNameFor(model => model.Phonenumber) </strong>: @Html.DisplayFor(model => model.Phonenumber)
+        </div>
+
+        <legend> Address Information </legend>
+        <div class="display-field">
+            <strong> @Html.DisplayNameFor(model => model.Country) </strong>: @Html.DisplayFor(model => model.Country)
+        </div>
+        <div class="display-field">
+            <strong> @Html.DisplayNameFor(model => model.State) </strong>: @Html.DisplayFor(model => model.State)
+        </div>
+        <div class="display-field">
+            <strong> @Html.DisplayNameFor(model => model.City) </strong>: @Html.DisplayFor(model => model.City)
+        </div>
+        <div class="display-field">
+            <strong> @Html.DisplayNameFor(model => model.Postcode) </strong>: @Html.DisplayFor(model => model.Postcode)
+        </div>
+        <div class="display-field">
+            <strong> @Html.DisplayNameFor(model => model.StreetAddress) </strong>: @Html.DisplayFor(model => model.StreetAddress)
+        </div>
+        </fieldset>
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                <p>
+                    <input type="submit" value="Delete" /> |
+                    @Html.ActionLink("Back to List", "Index")
+                </p>
+            }
+</div>

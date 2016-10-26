@@ -12,6 +12,7 @@ namespace OnTheSpot.DAL
 {
     public class DatabaseModels : DbContext
     {
+        // Back end frame work, no need to alter. These simply allow the databases themselves to accessed and manipulated
         public DbSet<UserProfile> Users { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<Package> Packages { get; set; }

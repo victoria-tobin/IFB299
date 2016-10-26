@@ -7,33 +7,46 @@
 @*Admin and courier only - ability to delete a vehicle (if no longer needed, no longer owned, etc)*@
 
 <div class="bodytext">
-    <h2>Delete</h2>
 
-    <h3>Are you sure you want to delete this?</h3>
+    <h1>Delete</h1>
+    <h2>Are you sure you want to delete this?</h2>
+    
     <fieldset>
-        <legend>Vehicle</legend>
-
-        <div class="display-label">
-             @Html.DisplayNameFor(model => model.Owner)
+        <legend> Identification </legend>
+        <div class="display-field">
+            <strong> Registration: </strong>
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.Registration)
+        </div>
+        <div class="display-field">
+            <strong> Make: </strong>
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.Type)
+        </div>
+        <div class="display-field">
+            <strong> Owner: </strong>
         </div>
         <div class="display-field">
             @Html.DisplayFor(model => model.Owner)
         </div>
 
-        <div class="display-label">
-             @Html.DisplayNameFor(model => model.InUse)
+        <legend> Current Status </legend>
+        <div class="display-field">
+            <strong> In Use? </strong>
         </div>
         <div class="display-field">
             @Html.DisplayFor(model => model.InUse)
         </div>
-
-        <div class="display-label">
-             @Html.DisplayNameFor(model => model.UsedBy)
+        <div class="display-field">
+            <strong> Used By: </strong>
         </div>
         <div class="display-field">
             @Html.DisplayFor(model => model.UsedBy)
         </div>
     </fieldset>
+
     @using (Html.BeginForm()) {
         @Html.AntiForgeryToken()
         <p>

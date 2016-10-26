@@ -2,7 +2,7 @@
     ViewBag.Title = "About us";
 }
 
-
+@*About page - mostly text, few links to other useful sections of the site*@
 
 <div class="bodytext">
 
@@ -32,7 +32,7 @@
     </p>
     <p>
         Interested in placing an order? Place an order online @if (Request.IsAuthenticated) { @Html.ActionLink("here", "Index", "Orders") } else { @Html.ActionLink("here", "Register", "Account") }<br /><br />
-        Already have an order and want to review? Visit your @Html.ActionLink("account", "Manage", "Account") <br /><br />
+        Already have an order and want to review? Visit your @if (Request.IsAuthenticated) { @Html.ActionLink("account", "Index", "Orders") } else { @Html.ActionLink("account", "Register", "Account") }<br /><br />
         Have any more queries? There are multiple ways to @Html.ActionLink("contact us", "Contact", "Home") <br /><br />
     </p>
 

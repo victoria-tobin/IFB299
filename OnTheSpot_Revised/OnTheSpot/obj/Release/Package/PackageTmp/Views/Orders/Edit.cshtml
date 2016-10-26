@@ -4,21 +4,25 @@
     ViewBag.Title = "Edit";
 }
 
+
+@*Can update any values of an order*@
+
+
 <div class="bodytext">
-    <h2>Edit</h2>
+    <h1>Edit Order Information</h1>
+    <h2>Be sure to input valid information!</h2>
 
     @using (Html.BeginForm()) {
         @Html.AntiForgeryToken()
         @Html.ValidationSummary(true)
 
         <fieldset>
-            <legend>Order</legend>
 
             @Html.HiddenFor(model => model.OrderID)
             @Html.HiddenFor(model => model.UserId)
 
             <div class="editor-label">
-                @Html.LabelFor(model => model.Username)
+                <strong> Username: </strong>
             </div>
             <div class="editor-field">
                 @Html.EditorFor(model => model.Username)
@@ -26,21 +30,21 @@
             </div>
 
             <div class="editor-label">
-                @Html.LabelFor(model => model.PickupAddress)
+                <strong> Pickup Address: </strong>
             </div>
             <div class="editor-field">
                 @Html.EditorFor(model => model.PickupAddress)
                 @Html.ValidationMessageFor(model => model.PickupAddress)
             </div>
             <div class="editor-label">
-                @Html.LabelFor(model => model.DeliveryAddress)
+                <strong> Delivery Address: </strong>
             </div>
             <div class="editor-field">
                 @Html.EditorFor(model => model.DeliveryAddress)
                 @Html.ValidationMessageFor(model => model.DeliveryAddress)
             </div>
             <div class="editor-label">
-                @Html.LabelFor(model => model.Pickup)
+                <strong> Is the package to be picked up personal? </strong>
             </div>
             <div class="editor-field">
                 @Html.CheckBoxFor(model => model.Pickup)

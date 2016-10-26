@@ -9,6 +9,9 @@ using OnTheSpot.DAL;
 
 namespace OnTheSpot.Controllers
 {
+    /// <summary>
+    /// Default error messages
+    /// </summary>
     public enum ManageMessageId
     {
         ChangePasswordSuccess,
@@ -20,11 +23,14 @@ namespace OnTheSpot.Controllers
     [InitializeSimpleMembership]
     public class AccountController : Controller
     {
+        // Forms a connection with the database
         private DatabaseModels db = new DatabaseModels();
 
-        //
-        // GET: /Account/Login
-
+        /// <summary>
+        /// Controller for the login action.
+        /// </summary>
+        /// <param name="returnUrl"></param>
+        /// <returns></returns>
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
@@ -32,9 +38,12 @@ namespace OnTheSpot.Controllers
             return View();
         }
 
-        //
-        // POST: /Account/Login
-
+        /// <summary>
+        /// Post controller for the login action. Allows login to website.
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="returnUrl"></param>
+        /// <returns></returns>
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
@@ -50,9 +59,10 @@ namespace OnTheSpot.Controllers
             return View(model);
         }
 
-        //
-        // POST: /Account/LogOff
-
+        /// <summary>
+        /// Post controller for LogOff. Needs only one controller as LogOff is a final action.
+        /// </summary>
+        /// <returns></returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult LogOff()
@@ -62,18 +72,21 @@ namespace OnTheSpot.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        //
-        // GET: /Account/Register
-
+        /// <summary>
+        /// Controller for register action, prompts the user for values.
+        /// </summary>
+        /// <returns></returns>
         [AllowAnonymous]
         public ActionResult Register()
         {
             return View();
         }
 
-        //
-        // POST: /Account/Register
-
+        /// <summary>
+        /// Post controller for the register action. (Core logic), allows a user to be created with previously inputted values.
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
@@ -112,9 +125,12 @@ namespace OnTheSpot.Controllers
             return View(model);
         }
 
-        //
-        // POST: /Account/Disassociate
-
+        /// <summary>
+        /// Post controller for disassociate. Needs only one controller as disassociation is a final action.
+        /// </summary>
+        /// <param name="provider"></param>
+        /// <param name="providerUserId"></param>
+        /// <returns></returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Disassociate(string provider, string providerUserId)
