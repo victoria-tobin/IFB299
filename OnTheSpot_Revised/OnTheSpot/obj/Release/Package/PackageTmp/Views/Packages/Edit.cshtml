@@ -61,35 +61,35 @@
                 @Html.RadioButtonFor(model => model.Status, "Delivered") Delivered
             </div>
             <div class="editor-label">
-                @Html.LabelFor(model => model.Weight)
+                @Html.LabelFor(model => model.Weight, "Weight")
             </div>
             <div class="editor-field">
                 @Html.EditorFor(model => model.Weight)
                 @Html.ValidationMessageFor(model => model.Weight)
             </div>
             <div class="editor-label">
-                @Html.LabelFor(model => model.Length)
+                @Html.LabelFor(model => model.Length, "Length")
             </div>
             <div class="editor-field">
                 @Html.EditorFor(model => model.Length)
                 @Html.ValidationMessageFor(model => model.Length)
             </div>
             <div class="editor-label">
-                @Html.LabelFor(model => model.Width)
+                @Html.LabelFor(model => model.Width, "Width")
             </div>
             <div class="editor-field">
                 @Html.EditorFor(model => model.Width)
                 @Html.ValidationMessageFor(model => model.Width)
             </div>
             <div class="editor-label">
-                @Html.LabelFor(model => model.Height)
+                @Html.LabelFor(model => model.Height, "Height")
             </div>
             <div class="editor-field">
                 @Html.EditorFor(model => model.Height)
                 @Html.ValidationMessageFor(model => model.Height)
             </div>
             <div class="editor-label">
-                @Html.LabelFor(model => model.Collected)
+                @Html.LabelFor(model => model.Collected, "Collected")
             </div>
             <div class="editor-field">
                 @Html.EditorFor(model => model.Collected)
@@ -97,7 +97,7 @@
             </div>
 
             <div class="editor-label">
-                @Html.LabelFor(model => model.Delivered)
+                @Html.LabelFor(model => model.Delivered, "Delivered")
             </div>
             <div class="editor-field">
                 @Html.EditorFor(model => model.Delivered)

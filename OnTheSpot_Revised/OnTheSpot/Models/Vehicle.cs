@@ -6,12 +6,13 @@ using System.ComponentModel.DataAnnotations;
 
 namespace OnTheSpot.Models
 {
-
+    //enum for allowed vehicle types
     public enum VehicleType
     {
         Car, Van, Truck, Motorbike
     }
 
+    //database fields for a vehicle
     public class Vehicle
     {
         [Key]

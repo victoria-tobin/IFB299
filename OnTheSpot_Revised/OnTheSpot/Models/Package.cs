@@ -8,17 +8,19 @@ using System.Web;
 namespace OnTheSpot.Models
 {
 
+    //enum for priority value
     public enum Priority 
     {
         Standard, High, Overnight
     }
 
+    //enum for status value
     public enum Status
     {
         ReadyForPickup, AtWarehouse, InTransit, Delivered
     }
 
-
+    //database fields for a package
     public class Package
     {
         [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]

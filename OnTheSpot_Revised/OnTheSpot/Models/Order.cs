@@ -8,6 +8,8 @@ using WebMatrix.WebData;
 
 namespace OnTheSpot.Models
 {
+
+    //database fields for an order
     public class Order
     {
        

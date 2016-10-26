@@ -12,6 +12,7 @@ namespace OnTheSpot.Models
 
 
     [Table("UserProfile")]
+    //Database fields for user account
     public class UserProfile
     {
         [Key]
@@ -36,9 +37,9 @@ namespace OnTheSpot.Models
         public string StreetAddress { get; set; }
 
         public IEnumerable<System.Web.Mvc.SelectListItem> UserRoles { get; set; }
-        //public IEnumerable<System.Web.Mvc.SelectListItem> Couriers { get; set; }
     }
 
+    //To update a users password
     public class SecurityModel
     {
         [Required]
@@ -57,6 +58,7 @@ namespace OnTheSpot.Models
         public string ConfirmPassword { get; set; }
     }
 
+    //Fields for user to login
     public class LoginModel
     {
         [Required]
@@ -72,6 +74,8 @@ namespace OnTheSpot.Models
         public bool RememberMe { get; set; }
     }
 
+
+    //fields for registering a new customer. 
     public class RegisterModel
     {
         [Required]
