@@ -1,0 +1,95 @@
+﻿@model OnTheSpot.Models.BigViewModel
+
+@using (Html.BeginForm("Manage", "Users"))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary()
+
+    <fieldset>
+        <legend>Account details (Requires password confirmation)</legend>
+
+        @Html.HiddenFor(model => model.UserProfile.UserName)
+        @Html.HiddenFor(model => model.UserProfile.UserID)
+        @Html.HiddenFor(model => model.UserProfile.UserRole)
+        @Html.HiddenFor(model => model.UserProfile.FirstName)
+        @Html.HiddenFor(model => model.UserProfile.MiddleName)
+        @Html.HiddenFor(model => model.UserProfile.LastName)
+
+        <legend>Contact Information</legend>
+        <div class="editor-label">
+            Contact Phone Number:
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.UserProfile.Phonenumber)
+            @Html.ValidationMessageFor(model => model.UserProfile.Phonenumber)
+        </div>
+        <div class="editor-label">
+            Contact Email:
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.UserProfile.Email)
+            @Html.ValidationMessageFor(model => model.UserProfile.Email)
+        </div>
+
+        <legend>Address</legend>
+        <div class="editor-label">
+            Country:
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.UserProfile.Country)
+            @Html.ValidationMessageFor(model => model.UserProfile.Country)
+        </div>
+        <div class="editor-label">
+            State:
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.UserProfile.State)
+            @Html.ValidationMessageFor(model => model.UserProfile.State)
+        </div>
+        <div class="editor-label">
+            City:
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.UserProfile.City)
+            @Html.ValidationMessageFor(model => model.UserProfile.City)
+        </div>
+        <div class="editor-label">
+            Postcode:
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.UserProfile.Postcode)
+            @Html.ValidationMessageFor(model => model.UserProfile.Postcode)
+        </div>
+        <div class="editor-label">
+            Address:
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.UserProfile.StreetAddress)
+            @Html.ValidationMessageFor(model => model.UserProfile.StreetAddress)
+        </div>
+
+        <legend>Password (Note: Must complete all three fields)</legend>
+        <div>
+            <div class="editor-label">
+                @Html.LabelFor(model => model.SecurityModel.OldPassword)
+            </div>
+            <div class="editor-field">
+                @Html.PasswordFor(model => model.SecurityModel.OldPassword)
+            </div>
+            <div class="editor-label">
+                @Html.LabelFor(model => model.SecurityModel.NewPassword)
+            </div>
+            <div class="editor-field">
+                @Html.PasswordFor(model => model.SecurityModel.NewPassword)
+            </div>
+            <div class="editor-label">
+                @Html.LabelFor(model => model.SecurityModel.ConfirmPassword)
+            </div>
+            <div class="editor-field">
+                @Html.PasswordFor(model => model.SecurityModel.ConfirmPassword)
+            </div>
+        </div>
+
+        <input type="submit" value="Save" />
+    </fieldset>
+}

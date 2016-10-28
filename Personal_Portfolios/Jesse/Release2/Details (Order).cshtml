@@ -1,0 +1,58 @@
+﻿@model OnTheSpot.Models.Order
+
+@{
+    ViewBag.Title = "Details";
+}
+
+
+@*Grabs values from database and displays for a particular order (when requesting details)*@
+
+
+<div class="bodytext">
+
+    <h1>Order details</h1>
+    <h2>Overview of Order Information</h2>
+
+    <fieldset>
+        <div class="editor-label">
+            <strong> Order ID: </strong>
+        </div>
+        <div class="editor-field">
+            @Html.DisplayFor(model => model.OrderID)
+        </div>
+        <div class="editor-label">
+            <strong> Username: </strong>
+        </div>
+        <div class="editor-field">
+            @Html.DisplayFor(model => model.Username)
+        </div>
+        <div class="editor-label">
+            <strong> Order Submitted: </strong>
+        </div>
+        <div class="editor-field">
+            @Html.DisplayFor(model => model.OrderSubmitted)
+        </div>
+        <div class="editor-label">
+            <strong> Pickup Address: </strong>
+        </div>
+        <div class="editor-field">
+            @Html.DisplayFor(model => model.PickupAddress)
+        </div>
+        <div class="editor-label">
+            <strong> Delivery Address: </strong>
+        </div>
+        <div class="editor-field">
+            @Html.DisplayFor(model => model.DeliveryAddress)
+        </div>
+        <div class="editor-label">
+            <strong> Is the package to be picked up personal? </strong>
+        </div>
+        <div class="editor-field">
+            @Html.CheckBoxFor(model => model.Pickup)
+        </div>
+    </fieldset>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id=Model.OrderID }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</div>

@@ -1,0 +1,57 @@
+﻿@model OnTheSpot.Models.Package
+
+@{
+    ViewBag.Title = "Details";
+}
+
+
+@*Shows a particlar package's details - values from database*@
+
+<div class="bodytext">
+    <h2>Details</h2>
+
+    <fieldset>
+        <legend>Package</legend>
+   
+            <table>
+            <tr>
+                <td>@Html.LabelFor(model => model.PackageID)</td>
+                <td>@Html.DisplayFor(model => model.PackageID)</td>
+            </tr>
+            <tr>
+                <td>@Html.LabelFor(model => model.OrderID)</td>
+                <td>@Html.DisplayFor(model => model.OrderID)</td>
+            </tr>
+            <tr>
+                <td>@Html.LabelFor(model => model.Status)</td>
+                <td>@Html.DisplayFor(model => model.Status)</td>
+            </tr>
+            <tr>
+                <td>@Html.LabelFor(model => model.Priority)</td>
+                <td>@Html.DisplayFor(model => model.Priority)</td>
+            </tr>
+            <tr>
+                <td>@Html.LabelFor(model => model.Weight)</td>
+                <td>@Html.DisplayFor(model => model.Weight)</td>
+            </tr>
+            <tr>
+                <td>@Html.LabelFor(model => model.Collected)</td>
+                <td>@Html.DisplayFor(model => model.Collected)</td>
+            </tr>
+            <tr>
+                <td>@Html.LabelFor(model => model.Delivered)</td>
+                <td>@Html.DisplayFor(model => model.Delivered)</td>
+            </tr>
+            <tr>
+                <td>@Html.LabelFor(model => model.AssignedCourier)</td>
+                <td>@Html.DisplayFor(model => model.AssignedCourier)</td>
+            </tr>
+
+        </table>
+
+    </fieldset>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id=Model.PackageID }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</div>
